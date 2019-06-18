@@ -10,4 +10,13 @@ class CoursController < ApplicationController
       redirect to '/'
     end
   end
+
+
+  get "/cours/new" do
+    if Helpers.is_logged_in? session
+      erb :'/cours/new'
+    else
+      redirect to '/'
+    end
+  end
 end
