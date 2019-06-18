@@ -41,9 +41,17 @@ class UsersController < ApplicationController
 
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      erb :'user/home'
+      redirect '/home'
     else
       redirect '/signup'
+    end
+  end
+
+  get '/home' do
+    if Helpers.is_logged_in? session
+      erb :'user/home'
+    else
+      redirect to '/'
     end
   end
 
