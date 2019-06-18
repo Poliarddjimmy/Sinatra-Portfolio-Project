@@ -1,7 +1,17 @@
 require './config/environment'
 
-if ActiveRecord::Migrator.needs_migration?
-  raise 'Migrations are pending. Run `rake db:migrate` to resolve the issue.'
+use Rack::Static, urls: ['/css'], root: 'public' # Rack fix allows seeing the css folder.
+
+#if ActiveRecord::Migrator.needs_migration?
+#  raise 'Migrations are pending. Run `rake db:migrate` to resolve the issue.'
+#end
+
+if defined?(ActiveRecord::Migrator) && ActiveRecord::Migrator.needs_migration?
+  raise 'Migrations are pending run `rake db:migrate` to resolve the issue.'
 end
 
+
+use Rack::MethodOverride
+
+use UsersController
 run ApplicationController
