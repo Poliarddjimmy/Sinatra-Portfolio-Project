@@ -1,4 +1,6 @@
+<style media="screen">
 
+</style>
 <nav class="navbar navbar-expand-md navbar-dark fixed-top" id="banner">
 	<div class="container">
   <!-- Brand -->
@@ -41,22 +43,23 @@
 	<div class="container">
 	<div class="banner-text">
 	<div class="banner-heading">
-	Glad to see you here !
+	Glad to see you <%= @user.pseudo  %> !
 	</div>
 	<div class="banner-sub-heading">
-	Here goes the secondary heading on hero banner
+	Click here to go to your class
 	</div>
-	<button type="button" class="btn btn-warning text-dark btn-banner">Get started</button>
+	<a href="/cours" type="button" class="btn btn-warning text-dark btn-banner">Go</a>
 	</div>
 	</div>
 </div>
 <section id="about" style="background-color:rgba(255,255,255,1);">
-<div class="container">
-	<div class="text-intro">
-	<h2>About Us</h2>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-	</div>
-</div>
+	<!--<div class="container">
+		<div class="text-intro">
+		<h2>About Us</h2>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+		</div>
+	</div>-->
+
 </section>
 
 
