@@ -9,19 +9,22 @@ class UsersController < ApplicationController
     erb :'user/home'
   end
 
-  get '/home' do
-    if Helpers.is_logged_in? session
-      redirect '/user/home'
-    else
-      erb :"/"
-    end
-  end
-
-  get "/signup" do
+  get '/signup' do
     if Helpers.is_logged_in? session
       redirect '/home'
     else
-      erb :"user/register"
+      erb :'user/register'
+    end
+  end
+
+  post '/signup'do
+    user = User.new params
+
+    if user.save
+      session[:user_id] = user.id
+      redirect '/'
+    else
+      redirect '/signup'
     end
   end
 
@@ -29,7 +32,7 @@ class UsersController < ApplicationController
     if Helpers.is_logged_in? session
       redirect '/user/home'
     else
-      erb :"/"
+      redirect '/'
     end
   end
 
@@ -38,9 +41,21 @@ class UsersController < ApplicationController
 
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect "/home"
+      erb :'user/home'
     else
-      redirect "/signup"
+      redirect '/signup'
     end
   end
+
+  get '/logout' do
+    if Helpers.is_logged_in? session
+      session.clear
+      redirect to '/'
+    else
+      redirect to '/'
+    end
+  end
+
+
+
 end

@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
-  validates :username, presence: true
+  validates :last_name, presence: true
+  validates :first_name, presence: true
+  validates :pseudo, presence: true
   validates :email, presence: true
   has_secure_password
 
@@ -10,7 +12,7 @@ class User < ActiveRecord::Base
     self.all.find{ |user| user.slug == slug }
   end
   def slug
-    self.username.gsub(" ", "-").downcase
+    self.pseudo.gsub(" ", "-").downcase
   end
 
 end
