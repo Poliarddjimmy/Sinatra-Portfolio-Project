@@ -49,6 +49,7 @@ class UsersController < ApplicationController
 
   get '/home' do
     if Helpers.is_logged_in? session
+      @user = Helpers.current_user session
       erb :'user/home'
     else
       redirect to '/'
