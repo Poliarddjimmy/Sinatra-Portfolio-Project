@@ -1,11 +1,11 @@
 require 'sinatra/base'
 require 'rack-flash'
 
-class UsersController < ApplicationController
+class StudentsController < ApplicationController
   #use Rack::Flash
 
   get '/user/:slug' do
-    @user = User.find_by_slug(params[:slug])
+    @user = Student.find_by_slug(params[:slug])
     erb :'user/home'
   end
 
@@ -18,9 +18,9 @@ class UsersController < ApplicationController
   end
 
   post '/signup'do
-    user = User.new params
+    student = Student.new params
 
-    if user.save
+    if student.save
       session[:user_id] = user.id
       redirect '/'
     else
@@ -37,10 +37,10 @@ class UsersController < ApplicationController
   end
 
   post '/login' do
-    user = User.find_by(email: params[:email]) unless params[:email].empty?
+    student = Student.find_by(email: params[:email]) unless params[:email].empty?
 
-    if user && user.authenticate(params[:password])
-      session[:user_id] = user.id
+    if student && student.authenticate(params[:password])
+      session[:user_id] = student.id
       redirect '/home'
     else
       redirect '/signup'
