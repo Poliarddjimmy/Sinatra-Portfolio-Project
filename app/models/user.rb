@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true
   has_secure_password
 
-  has_many :cours
+  has_many :courses
   has_many :modul_users
 
   def self.find_by_slug(slug)

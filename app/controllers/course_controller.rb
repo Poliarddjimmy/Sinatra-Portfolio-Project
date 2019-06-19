@@ -1,7 +1,4 @@
-require 'sinatra/base'
-require 'rack-flash'
-
-class CoursController < ApplicationController
+class CourseController < ApplicationController
   get "/cours" do
     if Helpers.is_logged_in? session
       @user = Helpers.current_user session
@@ -14,6 +11,7 @@ class CoursController < ApplicationController
 
   get "/cours/new" do
     if Helpers.is_logged_in? session
+      @user = Helpers.current_user session
       erb :'/cours/new'
     else
       redirect to '/'
@@ -23,11 +21,12 @@ class CoursController < ApplicationController
 
   post "/cours/new" do
     if Helpers.is_logged_in? session
-      cour = Helpers.current_user(session).cours.build(cours_name: params[:cours_name], cours_description: params[:cours_description])
+
+      cour = Helpers.current_user(session).courses.create(:cours_name=> params[:cours_name], :cours_description => params[:cours_description])
       if cour.save
         redirect to "/cours/#{cour.id}"
       else
-        redirect to "/tweets/new"
+        redirect to "/cours/new"
       end
     else
       redirect to '/'

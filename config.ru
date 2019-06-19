@@ -14,5 +14,5 @@ end
 use Rack::MethodOverride
 
 use UsersController
-use CoursController
+use CourseController
 run ApplicationController
