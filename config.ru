@@ -14,5 +14,6 @@ end
 use Rack::MethodOverride
 
 use StudentsController
+use TeachersController
 use CourseController
 run ApplicationController
