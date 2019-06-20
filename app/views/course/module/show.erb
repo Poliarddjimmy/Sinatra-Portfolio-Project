@@ -12,7 +12,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right">
               <% Modul.all.each do |modulo| %>
-              <a class="dropdown-item" href="#"><%= modulo.modul_title %></a>
+              <a class="dropdown-item" href="/course/<%= modulo.course_id %>/<%= modulo.modul_title.to_s.parameterize %>/<%= modulo.id %>"><%= modulo.modul_title %></a>
               <% end %>
             </div>
           </li>
