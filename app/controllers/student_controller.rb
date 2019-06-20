@@ -4,16 +4,16 @@ require 'rack-flash'
 class StudentsController < ApplicationController
   #use Rack::Flash
 
-  get '/user/:slug' do
+  get '/student/:slug' do
     @user = Student.find_by_slug(params[:slug])
-    erb :'user/home'
+    erb :'student/home'
   end
 
   get '/signup' do
     if Helpers.is_logged_in? session
       redirect '/home'
     else
-      erb :'user/register'
+      erb :'student/register'
     end
   end
 
@@ -21,7 +21,7 @@ class StudentsController < ApplicationController
     student = Student.new params
 
     if student.save
-      session[:user_id] = user.id
+      session[:user_id] = student.id
       redirect '/'
     else
       redirect '/signup'
@@ -30,27 +30,16 @@ class StudentsController < ApplicationController
 
   get '/login' do
     if Helpers.is_logged_in? session
-      redirect '/user/home'
+      redirect '/student/home'
     else
       redirect '/'
-    end
-  end
-
-  post '/login' do
-    student = Student.find_by(email: params[:email]) unless params[:email].empty?
-
-    if student && student.authenticate(params[:password])
-      session[:user_id] = student.id
-      redirect '/home'
-    else
-      redirect '/signup'
     end
   end
 
   get '/home' do
     if Helpers.is_logged_in? session
       @user = Helpers.current_user session
-      erb :'user/home'
+      erb :'student/home'
     else
       redirect to '/'
     end
