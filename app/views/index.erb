@@ -17,6 +17,11 @@
 			</div>
 			<div class="card-body">
 				<form method="post" action="/login">
+					<%=
+					if flash[:error]
+						 flash[:error]
+					end
+					%>
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-at"></i></span>

@@ -1,6 +1,9 @@
 require './config/environment'
+require 'sinatra/base'
+require 'rack-flash'
 
 class ApplicationController < Sinatra::Base
+  use Rack::Flash
   set :method_override, true
 
   configure do
@@ -25,7 +28,9 @@ class ApplicationController < Sinatra::Base
       session[:user_id] = student.id
       redirect '/home'
     else
-      redirect '/signup'
+      flash[:error] = "Format of the email was wrong."
+      redirect '/'
+      #redirect '/signup'
     end
   end
 
