@@ -1,36 +1,42 @@
 require 'sinatra/base'
 require 'rack-flash'
 
-class StudentsController < ApplicationController
-  #use Rack::Flash
+class UsersController < ApplicationController
+  use Rack::Flash
 
-  get '/student/:slug' do
-    @user = Student.find_by_slug(params[:slug])
-    erb :'student/home'
+  get '/user/:slug' do
+    @user = User.find_by_slug(params[:slug])
+    erb :'user/home'
   end
 
   get '/signup' do
     if Helpers.is_logged_in? session
       redirect '/home'
     else
-      erb :'student/register'
+      erb :'user/register'
     end
   end
 
   post '/signup'do
-    student = Student.new params
+    user = User.find_by(email: params[:email]) unless params[:email].empty?
+    if !user
+      user = User.new params
 
-    if student.save
-      session[:user_id] = student.id
-      redirect '/'
+      if user.save
+        session[:user_id] = user.id
+        redirect '/'
+      else
+        redirect '/signup'
+      end
     else
+      flash[:error] = 'this email exist already. <br> go to the login page to sign in'
       redirect '/signup'
     end
   end
 
   get '/login' do
     if Helpers.is_logged_in? session
-      redirect '/student/home'
+      redirect '/user/home'
     else
       redirect '/'
     end
@@ -39,7 +45,7 @@ class StudentsController < ApplicationController
   get '/home' do
     if Helpers.is_logged_in? session
       @user = Helpers.current_user session
-      erb :'student/home'
+      erb :'user/home'
     else
       redirect to '/'
     end

@@ -1,4 +1,5 @@
 class Course < ActiveRecord::Base
-  belongs_to :teacher
-  has_many :modul
+  belongs_to :user
+  has_many :moduls
+  has_many :course_users
 end

@@ -1,6 +1,6 @@
-class CreateStudents < ActiveRecord::Migration
+class CreateUsers < ActiveRecord::Migration
   def change
-    create_table :students do |u|
+    create_table :users do |u|
       u.string :first_name
       u.string :last_name
       u.string :pseudo

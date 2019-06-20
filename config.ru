@@ -13,7 +13,7 @@ end
 
 use Rack::MethodOverride
 
-use StudentsController
+use UsersController
 use TeachersController
 use CourseController
 run ApplicationController

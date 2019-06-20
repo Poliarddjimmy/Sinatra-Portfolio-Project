@@ -13,19 +13,19 @@
 
 ActiveRecord::Schema.define(version: 20190620010253) do
 
-  create_table "course_students", force: :cascade do |t|
-    t.integer "student_id"
+  create_table "course_users", force: :cascade do |t|
+    t.integer "user_id"
     t.integer "course_id"
   end
 
   create_table "courses", force: :cascade do |t|
-    t.integer "teacher_id"
+    t.integer "user_id"
     t.string  "course_name"
     t.string  "course_description"
   end
 
-  create_table "modul_students", force: :cascade do |t|
-    t.integer "student_id"
+  create_table "modul_users", force: :cascade do |t|
+    t.integer "user_id"
     t.integer "modul_id"
   end
 
@@ -36,15 +36,7 @@ ActiveRecord::Schema.define(version: 20190620010253) do
     t.string  "modul_content"
   end
 
-  create_table "students", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "pseudo"
-    t.string "email"
-    t.string "password_digest"
-  end
-
-  create_table "teachers", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.string "pseudo"

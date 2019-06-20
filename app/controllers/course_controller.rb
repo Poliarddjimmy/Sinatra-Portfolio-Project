@@ -22,7 +22,7 @@ class CourseController < ApplicationController
   post "/cours/new" do
     if Helpers.is_logged_in? session
 
-      cour = Helpers.current_user(session).courses.create(:cours_name=> params[:cours_name], :cours_description => params[:cours_description])
+      cour = Helpers.current_user(session).courses.create(:course_name=> params[:cours_name], :course_description => params[:cours_description])
       if cour.save
         redirect to "/cours/#{cour.id}"
       else

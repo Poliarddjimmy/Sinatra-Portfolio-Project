@@ -9,10 +9,17 @@
 	<div class="d-flex justify-content-center h-100">
 		<div class="card">
 			<div class="card-header">
-				<h3>Sign In</h3>
+				<h3>Sign Up</h3>
 			</div>
 			<div class="card-body">
-				<form method="post" action="/signup">
+				<% if flash[:error] %>
+					<div id="success" style="color:rgba(255,255,255,1);">
+					<%= flash[:error] %>
+					</div>
+					<br>
+				<% end %>
+
+				<form method="post" action="/teacher/new">
 
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
@@ -54,7 +61,11 @@
 					</div>
 				</form>
 			</div>
+
 			<div class="card-footer">
+				<div class="d-flex justify-content-center links">
+					Have an account?<a href="/">Sign in</a>
+				</div>
 			</div>
 		</div>
 	</div>
