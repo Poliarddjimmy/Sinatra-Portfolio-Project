@@ -11,21 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190619175754) do
+ActiveRecord::Schema.define(version: 20190620010253) do
+
+  create_table "course_students", force: :cascade do |t|
+    t.integer "student_id"
+    t.integer "course_id"
+  end
 
   create_table "courses", force: :cascade do |t|
-    t.integer "user_id"
-    t.string  "cours_name"
-    t.string  "cours_description"
+    t.integer "teacher_id"
+    t.string  "course_name"
+    t.string  "course_description"
   end
 
   create_table "modul_students", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "cours_id"
+    t.integer "student_id"
+    t.integer "modul_id"
   end
 
   create_table "moduls", force: :cascade do |t|
-    t.integer "cours_id"
+    t.integer "course_id"
     t.string  "modul_title"
     t.string  "modul_description"
     t.string  "modul_content"
@@ -36,7 +41,7 @@ ActiveRecord::Schema.define(version: 20190619175754) do
     t.string "last_name"
     t.string "pseudo"
     t.string "email"
-    t.string "password"
+    t.string "password_digest"
   end
 
   create_table "teachers", force: :cascade do |t|

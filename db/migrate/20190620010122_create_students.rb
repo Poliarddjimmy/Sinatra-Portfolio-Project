@@ -5,7 +5,7 @@ class CreateStudents < ActiveRecord::Migration
       u.string :last_name
       u.string :pseudo
       u.string :email
-      u.string :password
+      u.string :password_digest
     end
   end
 end
