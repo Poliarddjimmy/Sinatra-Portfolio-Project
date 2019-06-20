@@ -1,9 +1,9 @@
 require './config/environment'
 require 'sinatra/base'
 require 'rack-flash'
+require 'sinatra/redirect_with_flash'
 
 class ApplicationController < Sinatra::Base
-  use Sinatra::RedirectWithFlash
   use Rack::Flash
   set :method_override, true
 
@@ -25,11 +25,17 @@ class ApplicationController < Sinatra::Base
   post '/login' do
     student = Student.find_by(email: params[:email]) unless params[:email].empty?
 
+    if !student
+      flash[:error] = 'this email doesn\'t exist. <br> If you don\'t have an accout, create one!'
+      redirect '/'
+    end
+
     if student && student.authenticate(params[:password])
       session[:user_id] = student.id
       redirect '/home'
     else
-      redirect '/', notice: 'Bad email or password.'
+      flash[:error] = 'invalid email or password. <br> If you don\'t have an accout, create one!'
+      redirect '/'
       #redirect '/signup'
     end
   end

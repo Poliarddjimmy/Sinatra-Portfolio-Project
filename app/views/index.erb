@@ -16,12 +16,13 @@
 				</div>
 			</div>
 			<div class="card-body">
+				<% if flash[:error] %>
+					<div id="success" style="color:rgba(255,255,255,1);">
+					<%= flash[:error] %>
+					</div>
+					<br>
+				<% end %>
 				<form method="post" action="/login">
-					<% if @error %>
-					  <div id="success" style="border: 2px solid green;">
-					  <%= @error %>
-					  </div>
-					<% end %>
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-at"></i></span>
