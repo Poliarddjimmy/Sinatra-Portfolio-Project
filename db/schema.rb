@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20190620010253) do
     t.string "pseudo"
     t.string "email"
     t.string "password_digest"
+    t.string "is_a_teacher"
   end
 
 end
