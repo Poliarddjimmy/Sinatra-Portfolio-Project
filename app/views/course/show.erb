@@ -49,7 +49,7 @@
           <ul class="list-group">
 						<%  @course.moduls.each do |modul|  %>
             <li class="list-group-item d-flex justify-content-between align-items-center">
-              <a href="<%= @course.id %>/<%= modul.modul_title %>/<%= modul.id %>" style="color:rgba(255,255,255,1);">- <%= modul.modul_title  %></a>
+              <a href="<%= @course.id %>/<%= modul.modul_title.to_s.parameterize %>/<%= modul.id %>" style="color:rgba(255,255,255,1);">- <%= modul.modul_title  %></a>
 							<span>
 								<span class="badge badge-primary badge-pill"><%= modul.modul_users.to_a  %></span>
 								STUDENTS WORKING

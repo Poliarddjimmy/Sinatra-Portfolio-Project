@@ -63,4 +63,19 @@ class CourseController < ApplicationController
   end
 
 
+  get '/course/:id/:title/:di' do
+    if Helpers.is_logged_in? session
+      #title = params[:title].gsub("-"," ")
+      @modul = Modul.find_by_id(params[:di])
+      @user = Helpers.current_user session
+      erb :'course/module/show'
+    else
+      redirect to '/login'
+    end
+  end
+
+
+
+
+
 end
