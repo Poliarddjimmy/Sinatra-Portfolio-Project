@@ -45,4 +45,22 @@ class CourseController < ApplicationController
   end
 
 
+  post '/modul/new'do
+    modul = User.find_by(modul_title: params[:modul_title]) unless params[:modul_title].empty?
+    if !modul
+      user = Modul.new params
+
+      if modul.save
+        flash[:success] = 'The modul has been add successfully'
+        redirect back
+      else
+        redirect '/signup'
+      end
+    else
+      flash[:error] = 'this modul title exist already.'
+      redirect back
+    end
+  end
+
+
 end

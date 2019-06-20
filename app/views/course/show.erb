@@ -16,7 +16,7 @@
       </li>
 			<% if @user.is_a_teacher.to_i == 1   %>
       <li class="nav-item">
-        <a class="nav-link" href="/cours/new">new cours</a>
+        <a class="nav-link" href="/course/new">new cours</a>
       </li>
 			<% end %>
       <li class="nav-item">
@@ -45,9 +45,15 @@
 
 <div class="container">
   <div class="row">
-    <div class="jumbotron">
+    <div class="jumbotron" style="width:100%;">
       <h1 style="display:block;"><%= @course.course_name  %></h1>
-      <br style="display:block;">
+      <% if flash[:success] %>
+        <div id="success" style="color:rgba(255,255,255,1);">
+        <%= flash[:success] %>
+        </div>
+        <br>
+      <% end %>
+
       <ul class="nav nav-tabs">
         <li class="nav-item">
           <a class="nav-link active" data-toggle="tab" href="#description">Description</a>
@@ -57,26 +63,111 @@
         </li>
         <li class="nav-item">
         </li>
-        <!--<li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Option</a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" data-toggle="tab" href="#new_modul">New module</a>
             <a class="dropdown-item" href="#">Another action</a>
             <a class="dropdown-item" href="#">Something else here</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">Separated link</a>
           </div>
-        </li>-->
+        </li>
       </ul>
       <div id="myTabContent" class="tab-content">
         <div class="tab-pane fade show active" id="description">
           <p style="color:rgba(255,255,255,1);"><%= @course.course_description  %></p>
         </div>
         <div class="tab-pane fade" id="modul">
-          <p style="color:rgba(255,255,255,1);">Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.</p>
+          <% if @course.moduls.size.to_i == 0  %>
+            <p style="color:rgba(255,255,255,1);">There is no module availiable for this course</p>
+          <%  end  %>
+          <%  @course.moduls.each do |modul|  %>
+          <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Cras justo odio
+              <span class="badge badge-primary badge-pill">14</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Dapibus ac facilisis in
+              <span class="badge badge-primary badge-pill">2</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Morbi leo risus
+              <span class="badge badge-primary badge-pill">1</span>
+            </li>
+          </ul>
+          <%  end  %>
+
+
         </div>
-        <div class="tab-pane fade" id="dropdown1">
-          <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork.</p>
+        <div class="tab-pane fade" id="new_modul">
+          <br>
+          <div class="form-style-10 prinska" style="margin: 0 auto;">
+            <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
+            <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
+
+             <form id="" action="/modul/new" method="post">
+                  <style>
+                  .input-group-addon{width:100px;}
+                  .kk{min-width:250px;}
+                  </style>
+
+                  <div class="inner-wrap">
+
+                      <label>Title
+                          <input id="titre1" name="modul_title" value="" style="width:; border:rgba(255,255,255,0.00001) solid 1px; border-radius:0px;" class="form-control titre" type="text" placeholder="Add the module title">
+                          <input id="" name="course_id" value="<%= @course.id %>" type="hidden">
+                      </label>
+
+
+                      <label>Description
+                          <textarea id="" name="modul_description" value="" style="width:; resize: vertical; min-height:50px; border:rgba(255,255,255,0.00001) solid 1px;" class="form-control para1" type="text" placeholder="The module description here"></textarea>
+                      </label>
+
+
+                      <label>Description
+                          <textarea id="summernote" name="modul_content" value="" style="width:; resize: vertical; min-height:50px; border:rgba(255,255,255,0.00001) solid 1px;" class="form-control para1" type="text" placeholder="The content here"></textarea>
+                      </label>
+
+                      <script>
+                        $(document).ready(function() {
+                            $('#summernote').summernote();
+                        });
+                      </script>
+
+                      <button type="submit"  class="dark pull-right button" style="margin-right:10px;margin-top:;">
+                        Soumettre
+                      </button>
+                      <br>
+
+                  </div>
+
+              </form>
+
+            <script type="text/javascript">
+              $(document).ready(function() {
+                // submit form using $.ajax() method
+                $('#addc').submit(function(e){
+                  e.preventDefault(); // Prevent Default Submission
+                  $.ajax({
+                    url: '/ajouter/cours/',
+                    type: 'POST',
+                    data: $(this).serialize() // it will serialize the form data
+                  })
+                    .done(function(data){
+                    $('#addc').fadeOut('slow', function(){
+                      $('#addc').fadeIn('slow').html(data);
+                    });
+                  })
+                    .fail(function(){
+                    alert('Ajax Submit Failed ...');
+                  });
+                });
+              });
+            </script>
+
+          </div>
         </div>
         <div class="tab-pane fade" id="dropdown2">
           <p>Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater.</p>
