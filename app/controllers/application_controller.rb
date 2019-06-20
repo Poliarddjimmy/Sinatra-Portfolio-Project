@@ -26,8 +26,20 @@ class ApplicationController < Sinatra::Base
     student = Student.find_by(email: params[:email]) unless params[:email].empty?
 
     if !student
-      flash[:error] = 'this email doesn\'t exist. <br> If you don\'t have an accout, create one!'
-      redirect '/'
+      teacher = Teacher.find_by(email: params[:email]) unless params[:email].empty?
+      if !teacher
+        flash[:error] = 'this email doesn\'t exist. <br> If you don\'t have an accout, create one!'
+        redirect '/'
+      else
+        if teacher && teacher.authenticate(params[:password])
+          session[:user_id] = teacher.id
+          redirect '/teacher/home'
+        else
+          flash[:error] = 'invalid email or password. <br> If you don\'t have an accout, create one!'
+          redirect '/'
+          #redirect '/signup'
+        end
+      end
     end
 
     if student && student.authenticate(params[:password])
