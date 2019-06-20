@@ -46,9 +46,9 @@ class CourseController < ApplicationController
 
 
   post '/modul/new'do
-    modul = User.find_by(modul_title: params[:modul_title]) unless params[:modul_title].empty?
+    modul = Modul.find_by(modul_title: params[:modul_title]) unless params[:modul_title].empty?
     if !modul
-      user = Modul.new params
+      modul = Modul.new params
 
       if modul.save
         flash[:success] = 'The modul has been add successfully'

@@ -30,7 +30,7 @@
       <div class="dropdown-menu">
         <a class="dropdown-item" href="#">Link 1</a>
         <a class="dropdown-item" href="#">Link 2</a>
-        <a class="dropdown-item" href="#">Link 3</a>
+        <a class="dropdown-item" href="/logout">Logout</a>
       </div>
     </li>
     </ul>
@@ -38,12 +38,16 @@
 	</div>
 </nav>
 <br>
+
+<link rel="stylesheet" href="/stylesheets/bootstrap.min.css" />
+
+
 <div class="container">
   <div class="row">
     <style media="screen">
       .card{display:flex; margin:5px;}
     </style>
-    <% c = Course.all.each do |cour| %>
+    <!--
       <div class="card border-secondary mb-3" style="max-width: 20rem;">
         <div class="card-header">Header</div>
         <div class="card-body">
@@ -51,9 +55,20 @@
           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
         </div>
       </div>
-    <% end %>
+    -->
 
-
+		<div class="jumbotron" style="width:100%;">
+			<style media="screen">
+				.course_list a{color:rgba(255,255,255,1);}
+			</style>
+			<h1>
+				<ol class="course_list">
+					<% c = Course.all.each do |cour| %>
+						<li><a href="/course/<%= cour.id %>"><%= cour.course_name  %></a></li>
+					<% end %>
+				</ol>
+			</h1>
+		</div>
 
   </div>
 </div>
