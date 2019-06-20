@@ -12,8 +12,9 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right">
               <% Modul.all.each do |modulo| %>
-              <a class="dropdown-item" href="/course/<%= modulo.course_id %>/<%= modulo.modul_title.to_s.parameterize %>/<%= modulo.id %>"><%= modulo.modul_title %></a>
-              <% end %>
+                <% if modulo.modul_title != @modul.modul_title && modulo.course_id == @modul.course_id %>
+                  <a class="dropdown-item" href="/course/<%= modulo.course_id %>/<%= modulo.modul_title.to_s.parameterize %>/<%= modulo.id %>"><%= modulo.modul_title %></a>
+              <% end end %>
             </div>
           </li>
         </ul>
