@@ -14,9 +14,11 @@
       <li class="nav-item">
         <a class="nav-link" href="#">Link</a>
       </li>
+			<% if @user.is_a_teacher == 1   %>
       <li class="nav-item">
         <a class="nav-link" href="/cours/new">new cours</a>
       </li>
+			<% end %>
       <li class="nav-item">
         <a class="nav-link" href="#">Link</a>
       </li>
@@ -42,9 +44,6 @@
       .card{display:flex; margin:5px;}
     </style>
     <% c = Course.all.each do |cour| %>
-    <% if Course.all.size == 0  %>
-    ou pa gen kou
-    <% end %>
       <div class="card border-secondary mb-3" style="max-width: 20rem;">
         <div class="card-header">Header</div>
         <div class="card-body">
