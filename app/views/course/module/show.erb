@@ -3,7 +3,21 @@
 <div class="container">
   <div class="row">
     <div class="jumbotron" style="width:100%;">
-      <h1><%= @modul.modul_title %></h1>
+      <h1>
+        <%= @modul.modul_title %>
+        <ul class="navbar-nav ml-auto pull-right" style="font-size:0.3em; float:right; margin:10px;">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+              Others modules
+            </a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">Link 1</a>
+              <a class="dropdown-item" href="#">Link 2</a>
+              <a class="dropdown-item" href="/logout">Logout</a>
+            </div>
+          </li>
+        </ul>
+      </h1>
       <hr style="margin:1px; border:rgba(255,255,255,1) 1px solid;">
 
       <p style="margin:1px; color:rgba(255,255,255,1); margin-top:10px;"><%= @modul.modul_description %></p>
