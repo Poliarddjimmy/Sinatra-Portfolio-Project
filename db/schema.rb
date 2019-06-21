@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190621052127) do
+ActiveRecord::Schema.define(version: 20190621200215) do
 
   create_table "course_users", force: :cascade do |t|
     t.integer "user_id"
@@ -40,12 +40,13 @@ ActiveRecord::Schema.define(version: 20190621052127) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "pseudo"
-    t.string "email"
-    t.string "password_digest"
-    t.string "is_a_teacher"
+    t.string  "first_name"
+    t.string  "last_name"
+    t.string  "pseudo"
+    t.string  "email"
+    t.string  "password_digest"
+    t.string  "is_a_teacher"
+    t.integer "is_admin"
   end
 
 end
