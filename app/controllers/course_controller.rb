@@ -27,6 +27,26 @@ class CourseController < ApplicationController
       end
     end
 
+    patch '/edit/course/:id' do
+    if Helpers.is_logged_in? session
+      course = Course.find_by_id(params[:id])
+      if course && course.user == Helpers.current_user(session)
+        if course.update(course_name: params[:course_name], course_description: params[:course_description])
+          flash[:success] = 'The course has been update successfully'
+          redirect back
+        else
+          flash[:success] = 'The course hasn\'t been update'
+          redirect back
+        end
+      else
+        flash[:success] = 'This course is not belong to you'
+        redirect back
+      end
+    else
+      redirect to '/login'
+    end
+  end
+
 
   get "/course/new" do
     if Helpers.is_logged_in? session

@@ -4,6 +4,33 @@
 
 <div class="container">
   <div class="row">
+    <div class="modal" id="myModal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <form id="" action="/edit/module/<%= @modul.id %>" method="post" >
+            <input id="hidden" type="hidden" name="_method" value="PATCH">
+            <div class="modal-header">
+              <h5 class="modal-title"><%= @modul.modul_title %></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>
+                <textarea name="modul_description" rows="" cols="" style="width:100%; padding:5px;"><%= @modul.modul_description %></textarea>
+              </p>
+              <p>
+                <textarea name="modul_content" rows="" cols="" style="width:100%; padding:5px;"><%= @modul.modul_content %></textarea>
+              </p>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">Save changes</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
     <div class="jumbotron col-sm-9 col-xs-12" style="width:100%;">
       <h2>
         <span style="color:rgba(220,177,10);"><%= @modul.modul_title %></span>
@@ -34,6 +61,12 @@
       <div class="">
         <p style="margin:1px; color:rgba(255,255,255,1);"><%= @modul.modul_content %></p>
       </div>
+
+
+
+
+
+
     </div>
     <div class="jumbotron col-sm-3 col-xs-12" style="float:right; border-left:rgba(255,255,255,0.1) 1px solid;">
       <% modul = @user.modul_users.find_by_modul_id(@modul.id) %>
@@ -96,7 +129,11 @@
               Lesson suivante
           </a>
         <% end %>
-
+        <% if @user.courses.find_by_id(@modul.course_id)  %>
+        <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#myModal" style="font-size:1.3em; display:block; margin-top:15px; width:100%;">
+          Edit this module
+        </button>
+        <% end %>
     </diV>
 
 
