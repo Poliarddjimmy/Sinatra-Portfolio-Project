@@ -51,6 +51,16 @@ class UsersController < ApplicationController
     end
   end
 
+  get '/update/user/:id/:di' do
+     user = User.find_by_id(params[:id])
+     if user.update(is_admin: params[:di])
+       redirect back
+     else
+       return "med"
+     end
+   end
+
+
   get '/logout' do
     if Helpers.is_logged_in? session
       session.clear
