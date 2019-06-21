@@ -1,0 +1,53 @@
+
+<br>
+
+<link rel="stylesheet" href="/stylesheets/bootstrap.min.css" />
+<% @title = "Course" %>
+
+<div class="container">
+  <div class="row">
+    <style media="screen">
+      .card{display:flex; margin:5px;}
+    </style>
+    <!--
+      <div class="card border-secondary mb-3" style="max-width: 20rem;">
+        <div class="card-header">Header</div>
+        <div class="card-body">
+          <h4 class="card-title">Secondary card title</h4>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+      </div>
+    -->
+
+		<div class="jumbotron" style="width:100%;">
+			<style media="screen">
+				.course_list {color:rgba(255,255,255,1);}
+			</style>
+      <h1>
+  			<ol class="course_list">
+  				<% if @course %>
+          <% @course.each do |cour| %>
+  					<li><a href="/course/<%= cour.id %>"><%= cour.course_name  %></a></li>
+            <% end %>
+            <% else %>
+
+            You don't pubish to any <a href="/course">course</a>  yet <br>
+            <b><a href="/course/new">Click here to create one</a></b>
+
+  				<% end %>
+  			</ol>
+      </h1>
+
+		</div>
+
+  </div>
+</div>
+
+<!--<section id="about" style="background-color:rgba(255,255,255,1);">
+	<div class="container">
+		<div class="text-intro">
+		<h2></h2>
+			<br>
+		</div>
+	</div>
+</section>-->

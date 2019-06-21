@@ -17,6 +17,16 @@ class CourseController < ApplicationController
     end
   end
 
+    get "/course/my-courses" do
+      if Helpers.is_logged_in? session
+        @user = Helpers.current_user session
+        @course = @user.courses.all
+        erb :'/course/my_course'
+      else
+        redirect to '/'
+      end
+    end
+
 
   get "/course/new" do
     if Helpers.is_logged_in? session
