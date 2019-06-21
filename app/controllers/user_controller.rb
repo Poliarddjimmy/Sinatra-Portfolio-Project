@@ -60,6 +60,16 @@ class UsersController < ApplicationController
      end
    end
 
+   get '/user/profile/:pseudo' do
+     if Helpers.is_logged_in? session
+       @user1 = Helpers.current_user session
+       @user = User.find_by_pseudo(params[:pseudo])
+       erb :'user/profile'
+     else
+       redirect to '/'
+     end
+   end
+
 
   get '/logout' do
     if Helpers.is_logged_in? session
