@@ -16,10 +16,10 @@
               </button>
             </div>
             <div class="modal-body">
-              <p>
+              <p> Description
                 <textarea name="modul_description" rows="" cols="" style="width:100%; padding:5px;"><%= @modul.modul_description %></textarea>
               </p>
-              <p>
+              <p> Content
                 <textarea name="modul_content" rows="" cols="" style="width:100%; padding:5px;"><%= @modul.modul_content %></textarea>
               </p>
             </div>
@@ -54,6 +54,12 @@
           </li>
         </ul>
       </h2>
+      <% if flash[:success] %>
+        <div id="success" style="color:rgba(255,255,255,1);">
+        <%= flash[:success] %>
+        </div>
+        <br>
+      <% end %>
       <hr style="margin:1px; border:rgba(255,255,255,1) 1px solid;">
 
       <p style="margin:1px; color:rgba(255,255,255,1); margin-top:10px;"><%= @modul.modul_description %></p>

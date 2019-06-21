@@ -17,17 +17,17 @@ class CourseController < ApplicationController
     end
   end
 
-    get "/course/my-courses" do
-      if Helpers.is_logged_in? session
-        @user = Helpers.current_user session
-        @course = @user.courses.all
-        erb :'/course/my_course'
-      else
-        redirect to '/'
-      end
+  get "/course/my-courses" do
+    if Helpers.is_logged_in? session
+      @user = Helpers.current_user session
+      @course = @user.courses.all
+      erb :'/course/my_course'
+    else
+      redirect to '/'
     end
+  end
 
-    patch '/edit/course/:id' do
+  patch '/edit/course/:id' do
     if Helpers.is_logged_in? session
       course = Course.find_by_id(params[:id])
       if course && course.user == Helpers.current_user(session)
@@ -40,6 +40,26 @@ class CourseController < ApplicationController
         end
       else
         flash[:success] = 'This course is not belong to you'
+        redirect back
+      end
+    else
+      redirect to '/login'
+    end
+  end
+
+  patch '/edit/module/:id' do
+    if Helpers.is_logged_in? session
+      modul = Modul.find_by_id(params[:id])
+      if modul
+        if modul.update(modul_description: params[:modul_description], modul_content: params[:modul_content])
+          flash[:success] = 'The modul has been update successfully'
+          redirect back
+        else
+          flash[:success] = 'The modul hasn\'t been update'
+          redirect back
+        end
+      else
+        flash[:success] = 'Can\'t find the modul'
         redirect back
       end
     else
