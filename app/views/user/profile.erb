@@ -1,8 +1,215 @@
 <% @title = @user.pseudo %>
 <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" />
 
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<style media="screen">
+/* USER PROFILE PAGE */
+.card {
+  margin-top: 20px;
+  padding: 30px;
+  background-color: rgba(214, 224, 226, 0.2);
+  -webkit-border-top-left-radius:5px;
+  -moz-border-top-left-radius:5px;
+  border-top-left-radius:5px;
+  -webkit-border-top-right-radius:5px;
+  -moz-border-top-right-radius:5px;
+  border-top-right-radius:5px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.card.hovercard {
+  position: relative;
+  padding-top: 0;
+  overflow: hidden;
+  text-align: center;
+  background-color: #00CED1;
+  width: 100%;
+  
+}
+.card.hovercard .card-background {
+  height: 130px;
+}
+.card-background img {
+  
+  margin-left: -100px;
+  margin-top: -200px;
+  min-width: 130%;
+}
+.card.hovercard .useravatar {
+  position: absolute;
+  top: 15px;
+  left: 0;
+  right: 0;
+}
+.card.hovercard .useravatar img {
+  width: 120px;
+  height: 120px;
+  max-width: 120px;
+  max-height: 120px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  border: 5px solid rgba(255, 255, 255, 0.5);
+}
+.card.hovercard .card-info {
+  position: absolute;
+  bottom: 14px;
+  left: 0;
+  right: 0;
+}
+.card-title {
+  padding:0 5px;
+  font-size: 40px;
+  font-family: cursive;
+  line-height: 1;
+  color: #00CED1;
+  background-color: rgba(255, 255, 255, 0.1);
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+.card.hovercard .card-info {
+  padding:0 5px;
+  font-size: 20px;
+  line-height: 1;
+  color: #262626;
+  background-color: rgba(255, 255, 255, 0.1);
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+.card.hovercard .card-info {
+  overflow: hidden;
+  font-size: 12px;
+  line-height: 20px;
+  color: #737373;
+  text-overflow: ellipsis;
+}
+.card.hovercard .bottom {
+  padding: 0 20px;
+  margin-bottom: 17px;
+}
+.btn-pref .btn {
+  -webkit-border-radius:0 !important;
+}
+.btn.btn-primary {
+  font-family:cursive;
+  font-size:20;
+  color:#00CED1;
+}
+p {
+  font-family: serif;
+  font-size:18px;
+  color:#00CED1;
+}
+h3 {
+  font-family: serif;
+  font-size:25px;
+  color:#00CED1;
+}
+#AboutPiece, #AboutMe, #Portfolio, #ContactMe{
+   background-color: #FFEBCD;
+}
+.well {
+  background-color: #FFFAF0;
+}
+</style>
+
+<script type="text/javascript">
+$(document).ready(function() {
+$(".btn-pref .btn").click(function () {
+  $(".btn-pref .btn").removeClass("btn-primary").addClass("btn-default");
+  // $(".tab").addClass("active"); // instead of this do the below 
+  $(this).removeClass("btn-default").addClass("btn-primary");   
+});
+});
+</script>
+
 <div class="container">
   <div class="row">
+    <div class="col-lg-12 col-sm-12">
+    <div class="card hovercard">
+        <div class="card-background">
+           
+            <img class="card-bkimg" alt="" src="https://scontent-yyz1-1.xx.fbcdn.net/v/t1.0-9/5792_167366633419376_1680462766_n.jpg?oh=1fa3d2de8138d129be0b9026307f6431&oe=59019AA8">
+            <!-- http://lorempixel.com/850/280/people/9/ -->
+        </div>
+        <div class="useravatar">
+            <img alt="" src="https://scontent-yyz1-1.xx.fbcdn.net/v/t1.0-9/392939_167366400086066_1892947371_n.jpg?oh=49618ece13316bf5d4fa70877dc962d0&oe=58FDFD1D">
+        </div>
+        <div class="card-info"> <span class="card-title">Mad Vik Creations</span>
+        </div>
+    </div>
+    	
+    <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
+        <div class="btn-group" role="group">
+            <button type="button" id="AboutPiece" class="btn btn-primary" href="#tab1" data-toggle="tab"><span class="glyphicon glyphicon-tint" aria-hidden="true"></span>
+                <div class="hidden-xs">About this Piece</div>
+            </button>
+        </div>
+        <div class="btn-group" role="group">
+            <button type="button" id="AboutMe" class="btn btn-default" href="#tab2" data-toggle="tab"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+                <div class="hidden-xs">About Me...</div>
+            </button>
+        </div>
+        <div class="btn-group" role="group">
+            <button type="button" id="Portfolio" class="btn btn-default" href="#tab3" data-toggle="tab"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                <div class="hidden-xs">Portfolio</div>
+            </button>
+        </div>
+        <div class="btn-group" role="group">
+            <button type="button" id="ContactMe" class="btn btn-default" href="#tab4" data-toggle="tab"><span class="glyphicon glyphicon-phone" aria-hidden="true"></span>
+                <div class="hidden-xs">Contact Me</div>
+            </button>
+        </div>
+    </div>
+
+        <div class="well">
+      <div class="tab-content">
+        <div class="tab-pane fade in active" id="tab1">
+            <p class="text-right">
+				<a href="http://bootsnipp.com/iframe/m0Ggz" target="_blank">Best viewed full screen</a><br>
+				<a href="http://validator.w3.org/check?uri=http%3A%2F%2Fbootsnipp.com%2Fiframe%2Fm0Ggz" target="_blank"><small>HTML</small><sup>5</sup></a>
+			</p>
+            <h3>At the long weekends end...</h3>
+          <img alt="" class="img-responsive" src="https://scontent-yyz1-1.xx.fbcdn.net/v/t1.0-0/p206x206/13178557_605679259588109_6066252793552290124_n.jpg?oh=34392cf3941bae05303459d06e3a8341&oe=59087C9A">
+          <p>
+At the long weekends end...<br>
+Sketch<br>
+2015<br>
+Pen on paper<br>
+8.5in x 11.in<br></br>
+This piece was created in 2015 at the end of the August long weekend. It was a calm and beautiful day, land sports had just ended and the other camps had yet to arrive at the beach. 
+Wanting to take advantage of this peacful moment I made a quick sketch of my Uncles boat. Keeping my lines soft and gestural I created this peace with a clear mind and serenity. 
+Camp is not a place for harsh lines and confining spaces, it s meant ot be free and fun. I wanted to try and express some of this in my picutre.  
+</p>
+        </div>
+        <div class="tab-pane fade in" id="tab2">
+            <h3>About Me...</h3>
+          <p>I am a seond year student  at Confederationc College; I have one year until I graduate from the Interactive Media Development program. 
+          My passions include sketching and character design, animation, graphic design, photography and web development. </p>
+        </div>
+        <div class="tab-pane fade in" id="tab3">
+            <h3>Other Portfolio Pieces</h3>
+          <p>Uncertainty</p>
+          <img alt="" class="img-responsive" src="https://scontent-yyz1-1.xx.fbcdn.net/v/t1.0-9/13138954_605678916254810_5633894689942014157_n.jpg?oh=eb8670527a9cb09d7d65e90207b9f641&oe=5905A9E2">
+          <p></p>
+          <img alt="" class="img-responsive" src="">
+          <p></p>
+          <img alt="" class="img-responsive" src="">
+        </div>
+         <div class="tab-pane fade in" id="tab4">
+             <h3>Contact Me...</h3>
+             <p>I hope you enjoyd browsing through my portfolio, I look foward to hearing from you!<br> 
+             Phone: 1(807) 627-8913<br>
+             E-mail: viktoriamk22@gmail.com<br>
+            </p>
+      </div>
+    </div>
     
+    </div>
   </div>
 </div>
