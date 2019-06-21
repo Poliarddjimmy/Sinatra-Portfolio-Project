@@ -8,6 +8,15 @@ class CourseController < ApplicationController
     end
   end
 
+  get "/class/course" do
+    if Helpers.is_logged_in? session
+      @user = Helpers.current_user session
+      erb :'/course/classe'
+    else
+      redirect to '/'
+    end
+  end
+
 
   get "/course/new" do
     if Helpers.is_logged_in? session
