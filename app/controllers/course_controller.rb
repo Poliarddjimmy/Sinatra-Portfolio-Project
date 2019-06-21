@@ -92,6 +92,20 @@ class CourseController < ApplicationController
     end
   end
 
+  post '/add/CourseUser' do
+    @user = Helpers.current_user session
+    @coruse = @user.course_users.find_by_course_id(params[:course_id])
+    if @coruse
+
+    else
+      @corus = CourseUser.new params
+      if @corus.save
+        flash[:success] = 'Your subscription has been a success'
+        redirect back
+      end
+    end
+  end
+
   get '/delete/:id' do
     @moduse = ModulUser.find_by_id(params[:id])
     if @moduse.delete
