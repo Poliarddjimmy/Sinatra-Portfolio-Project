@@ -66,12 +66,35 @@ class CourseController < ApplicationController
   get '/course/:id/:title/:di' do
     if Helpers.is_logged_in? session
       #title = params[:title].gsub("-"," ")
+
+
       @modulo = Modul.find_by_course_id(params[:id])
       @modul = Modul.find_by_id(params[:di])
       @user = Helpers.current_user session
+      @moduse =ModulUser.find_by_modul_id_and_user_id(params[:di], @user.id)
       erb :'course/module/show'
     else
       redirect to '/login'
+    end
+  end
+
+  post '/add/ModulUser' do
+    @user = Helpers.current_user session
+    @moduse = @user.modul_users.find_by_modul_id(params[:modul_id])
+    if @moduse
+
+    else
+      @moduse = ModulUser.new params
+      if @moduse.save
+
+      end
+    end
+  end
+
+  get '/delete/:id' do
+    @moduse = ModulUser.find_by_id(params[:id])
+    if @moduse.delete
+      redirect back
     end
   end
 
