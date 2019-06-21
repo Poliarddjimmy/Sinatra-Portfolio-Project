@@ -18,7 +18,7 @@
                   <% if modulo.modul_title == @modul.modul_title %>
                     <a class="dropdown-item" >
                   <% else %>
-                    <a class="dropdown-item" href="/course/<%= modulo.course_id %>/<%= modulo.modul_title.to_s.parameterize %>/<%= modulo.id %>">
+                    <a class="dropdown-item" href="/course/<%= modulo.course_id %>/<%= modulo.modul_title.to_s.parameterize %>/<%= modulo.modul_number %>">
                   <% end %>
                       <%= modulo.modul_title %>
                     </a>
@@ -36,7 +36,8 @@
       </div>
     </div>
     <div class="jumbotron col-sm-3 col-xs-12" style="float:right; border-left:rgba(255,255,255,0.1) 1px solid;">
-      <% if modul = @user.modul_users.find_by_modul_id(@modul.id) %>
+      <% modul = @user.modul_users.find_by_modul_id(@modul.id) %>
+      <% if modul %>
         <style>
           .read{background-color:rgba(0,244,0,1);}
           .gf{display:none;}
@@ -88,10 +89,13 @@
             });
           </script>
         </div>
+        <% modula = Modul.find_by_modul_number(@modul.modul_number.to_i + 1) %>
 
-        <a href="" class="btn btn-outline-warning"  style="font-size:1.3em; display:block; margin-top:15px;">
-            Lesson suivante
-        </a>
+        <% if modula  %>
+          <a href="/course/<%= modula.course_id %>/<%= modula.modul_title.to_s.parameterize %>/<%= modula.modul_number %>" class="btn btn-outline-warning"  style="font-size:1.3em; display:block; margin-top:15px;">
+              Lesson suivante
+          </a>
+        <% end %>
 
     </diV>
 

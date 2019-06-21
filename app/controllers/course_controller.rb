@@ -37,6 +37,7 @@ class CourseController < ApplicationController
   get '/course/:id' do
     if Helpers.is_logged_in? session
       @course = Course.find_by_id(params[:id])
+      @modul = Modul.all
       @user = Helpers.current_user session
       erb :'course/show'
     else
@@ -65,12 +66,12 @@ class CourseController < ApplicationController
 
   get '/course/:id/:title/:di' do
     if Helpers.is_logged_in? session
+      @user = Helpers.current_user session
       #title = params[:title].gsub("-"," ")
 
 
       @modulo = Modul.find_by_course_id(params[:id])
-      @modul = Modul.find_by_id(params[:di])
-      @user = Helpers.current_user session
+      @modul = Modul.find_by_modul_number(params[:di])
       @moduse =ModulUser.find_by_modul_id_and_user_id(params[:di], @user.id)
       erb :'course/module/show'
     else
@@ -98,7 +99,14 @@ class CourseController < ApplicationController
     end
   end
 
-
+  get '/update/:id/:number' do
+     modul = Modul.find_by_id(params[:id])
+     if modul.update(modul_number: params[:number])
+       redirect back
+     else
+       return "med"
+     end
+   end
 
 
 
