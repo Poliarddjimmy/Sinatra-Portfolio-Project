@@ -16,12 +16,16 @@
               </button>
             </div>
             <div class="modal-body">
-              <p> Description
-                <textarea name="modul_description" rows="" cols="" style="width:100%; padding:5px;"><%= @modul.modul_description %></textarea>
-              </p>
-              <p> Content
-                <textarea name="modul_content" rows="" cols="" style="width:100%; padding:5px;"><%= @modul.modul_content %></textarea>
-              </p>
+              <div class="form-group">
+                <p> Description
+                  <textarea name="modul_description" class="form-control" rows="" cols="" style="width:100%; padding:5px;"><%= @modul.modul_description %></textarea>
+                </p>
+              </div>
+              <div class="form-group">
+                <p> Content
+                  <textarea name="modul_content" class="form-control" rows="" cols="" style="width:100%; padding:5px;"><%= @modul.modul_content %></textarea>
+                </p>
+              </div>
             </div>
             <div class="modal-footer">
               <button type="submit" class="btn btn-primary">Save changes</button>
