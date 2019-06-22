@@ -48,17 +48,23 @@ and users. A modul `has_many` user because many people want to learn and a user 
 
 Below is an example of a join table.
 
-**modul_users**
-
-| **id** | **modul_id** | **user_id** |
-| :----: | :----------: | :---------: |
-|   1    |      1       |     2       |
-
 **course_users**
 
-| **id** | **course_id** | **user_id** |
-| :----: | :-----------: | :---------: |
-|   1    |       1       |     2       |
+Whitch allow the user to subscribe to a course
+
+| **id** | **course_id** | **user_id** | **status** |
+| :----: | :-----------: | :---------: | :--------: |
+|   1    |       1       |     2       |     1      |
+
+
+**modul_users**
+
+Whitch allow the user to complete a module
+
+| **id** | **modul_id** | **user_id** | **status** |
+| :----: | :----------: | :---------: | :--------: |
+|   1    |      1       |     2       |     0      |
+
 
 #### Models
 
