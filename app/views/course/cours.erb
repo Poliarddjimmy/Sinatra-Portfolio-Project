@@ -25,6 +25,9 @@
 			</style>
 			<h1>
 				<ol class="course_list">
+          <% if Course.all.size.to_i == 0 %>
+            <a>There is no course publish yet</a>
+          <% end %>
 					<% c = Course.all.each do |cour| %>
 						<li><a href="/course/<%= cour.id %>"><%= cour.course_name  %></a></li>
 					<% end %>
