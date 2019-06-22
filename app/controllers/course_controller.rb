@@ -96,9 +96,13 @@ class CourseController < ApplicationController
   get '/course/:id' do
     if Helpers.is_logged_in? session
       @course = Course.find_by_id(params[:id])
-      @modul = Modul.all
-      @user = Helpers.current_user session
-      erb :'course/show'
+      if @course
+        @modul = Modul.all
+        @user = Helpers.current_user session
+        erb :'course/show'
+      else
+        redirect to '/course'
+      end
     else
       redirect to '/login'
     end

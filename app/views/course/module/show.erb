@@ -106,7 +106,7 @@
             <input type="hidden" name="modul_id" value="<%= @modul.id  %>">
             <input type="hidden" name="user_id" value="<%= @user.id  %>">
             <input type="hidden" name="status" value="1">
-            <button type="submit" id="gf" class="btn btn-sm btn-info gf" onclick="myFunctione()">
+            <button onclick="document.getElementById('gf').style.display='none'; document.getElementById('read').style.backgroundColor='rgba(0,244,0,1)';document.getElementById('button').style.display='block';document.getElementById('des').style.display='inline-block';" type="submit" id="gf" class="btn btn-sm btn-info gf">
                 Complete
             </button>
           </form>
@@ -158,6 +158,8 @@
           document.getElementById('read').style.backgroundColor = 'rgba(0,244,0,1)';
           document.getElementById('button').style.display = 'block';
           document.getElementById('des').style.display = 'inline-block';
+
+          
         }
     </script>
     </div>
