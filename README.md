@@ -72,3 +72,13 @@ the correct associations in your models:
 - A user `has_many` course_users and many courses through course_users.
 - A course `has_many` course_users and many users through course_users.
 - A course_users `belongs_to` a user and a course.
+
+#### Usage
+
+If new user, you have to create an account, else, the user have to sign in.
+Whe the user is logged in, he will have saverals options as:
+
+- subscribe to a course
+- read all modules that belong to the course the user has subscribe
+- if the user is a teacher, he will be able to create course, add module to the course created
+- if the user is a admin, he will be able to create a new teacher and define a user a admin or teacher
