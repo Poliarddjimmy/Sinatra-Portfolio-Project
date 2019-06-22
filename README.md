@@ -54,7 +54,7 @@ Below is an example of a join table.
 | :----: | :----------: | :---------: |
 |   1    |      1       |     2       |
 
-**Mourse_users**
+**course_users**
 
 | **id** | **course_id** | **user_id** |
 | :----: | :-----------: | :---------: |
