@@ -174,14 +174,20 @@ $(".btn-pref .btn").click(function () {
       </style>
       <div class="tab-pane fade show active" id="about">
         <br>
+        <% if flash[:success] %>
+          <div id="success" style="color:rgba(255,255,255,1);">
+          <%= flash[:success] %>
+          </div>
+          <br>
+        <% end %>
+
         <h1 style="color:#00CED1;">First name:
           <span id="firstname" style="color:rgba(255,255,255,1); "><%= @user.first_name %></span>
 
-          <form id="efirstname" style="display:none;" class="" action="index.html" method="post">
+          <form id="efirstname" style="display:none;" class="" action="/<%= @user.first_name %>/edit/first_name" method="post">
             <div>
               <div class="form-group" style="">
-                <input type="hidden" name="what" value="first_name">
-                <input type="text" class="form-control" value="<%= @user.first_name %>" style="width:30%;" required placeholder="Enter your first name here">
+                <input type="text" name="up" class="form-control" value="<%= @user.first_name %>" style="width:30%;" required placeholder="Enter your first name here">
 
                 <b onclick="document.getElementById('next').style.display='none';document.getElementById('last').style.display='block';" style="display:inline-block;" id="next" class="btn btn-info btn-sm" name="button">Next</b>
                 <div class="" id="last" style="display:none;">
@@ -193,16 +199,60 @@ $(".btn-pref .btn").click(function () {
             </div>
 
           </form>
-
+          <% if @user.id == @user1.id %>
           <button id="edit" onclick="document.getElementById('edit').style.display='none';document.getElementById('efirstname').style.display='block';document.getElementById('firstname').style.display='none';" class=""style="float:right; font-size:0.5em; background-color:rgba(255,255,255,0.000000001); border:red 0px solid;">
             <i class="fa fa-edit"></i>
           </button>
+          <% end %>
+
         </h1>
+
+
+        <h1 style="color:#00CED1;">Last name:
+          <span id="lastname" style="color:rgba(255,255,255,1); "><%= @user.last_name %></span>
+
+          <form id="elastname" style="display:none;" class="" action="/<%= @user.last_name %>/edit/last_name" method="post">
+            <div>
+              <div class="form-group" style="">
+                <input type="text" name="up" class="form-control" value="<%= @user.last_name %>" style="width:30%;" required placeholder="Enter your last name here">
+
+                <b onclick="document.getElementById('next1').style.display='none';document.getElementById('last1').style.display='block';" style="display:inline-block;" id="next1" class="btn btn-info btn-sm" name="button">Next</b>
+                <div class="" id="last1" style="display:none;">
+                  <input type="password" name="password" class="form-control" style="width:30%;" placeholder="Enter your password to continue">
+                  <input type="submit" class="btn btn-sm btn-success" value="Submit change">
+                  <span onclick="document.getElementById('edit1').style.display='inline-block';document.getElementById('elastname').style.display='none';document.getElementById('lastname').style.display='inline-block'; document.getElementById('next1').style.display='inline-block'; document.getElementById('last1').style.display='none';" class="btn btn-sm btn-warning">Cancel</span>
+                </div>
+              </div>
+            </div>
+
+          </form>
+          <% if @user.id == @user1.id %>
+          <button id="edit1" onclick="document.getElementById('edit1').style.display='none';document.getElementById('elastname').style.display='block';document.getElementById('lastname').style.display='none';" class=""style="float:right; font-size:0.5em; background-color:rgba(255,255,255,0.000000001); border:red 0px solid;">
+            <i class="fa fa-edit"></i>
+          </button>
+          <% end %>
+
+        </h1>
+
+
+
       </div>
 
 
       <div class="tab-pane fade show" id="portfolio">
-        <p style="color:rgba(255,255,255,1);">ble</p>
+        <br>
+        <h3>Modul complete</h3>
+        <p style="color:rgba(255,255,255,1);">
+          <%
+            @mo = @user.modul_users.all
+
+            if @mo
+              @mo.each do |modu|
+                @m = Modul.find_by_id(modu.modul_id)
+          %>
+            <%= @m.modul_title %>
+          <% end end %>
+        </p>
       </div>
 
     </div>

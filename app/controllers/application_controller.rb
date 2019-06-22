@@ -22,20 +22,4 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  post '/login' do
-    user = User.find_by(email: params[:email]) unless params[:email].empty?
-    if !user
-      flash[:error] = 'This email doesn\'t exist. <br> If you don\'t have an accout, create one!'
-      redirect '/'
-    end
-    if user && user.authenticate(params[:password])
-      session[:user_id] = user.id
-      redirect '/home'
-    else
-      flash[:error] = 'invalid email or password. <br> If you don\'t have an accout, create one!'
-      redirect '/'
-      #redirect '/signup'
-    end
-  end
-
 end
