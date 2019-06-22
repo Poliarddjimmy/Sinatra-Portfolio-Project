@@ -136,7 +136,7 @@ $(".btn-pref .btn").click(function () {
         <img class="card-bkimg" alt="" src="https://scontent-yyz1-1.xx.fbcdn.net/v/t1.0-9/5792_167366633419376_1680462766_n.jpg?oh=1fa3d2de8138d129be0b9026307f6431&oe=59019AA8">
       </div>
       <div class="useravatar">
-          <img alt="" src="https://scontent-yyz1-1.xx.fbcdn.net/v/t1.0-9/392939_167366400086066_1892947371_n.jpg?oh=49618ece13316bf5d4fa70877dc962d0&oe=58FDFD1D">
+          <img alt="" src="images/user.png">
       </div>
       <div class="card-info"> <span class="card-title"><%= @user.last_name %> <%= @user.first_name %></span>
       </div>
@@ -169,9 +169,24 @@ $(".btn-pref .btn").click(function () {
       </li>
     </ul>
     <div id="myTabContent" class="tab-content">
-
+      <style media="screen">
+        .tab-pane .fa{color:rgba(255,255,255,1);}
+      </style>
       <div class="tab-pane fade show active" id="about">
-        <p style="color:rgba(255,255,255,1);">bla</p>
+        <br>
+        <h1 style="color:#00CED1;">First name:
+          <span id="firstname" style="color:rgba(255,255,255,1); "><%= @user.first_name %></span>
+
+          <span id="efirstname" style="display:none;">
+            <div class="form-group">
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+            </div>
+          </span>
+
+          <button onclick="document.getElementById('efirstname').style.display='block';document.getElementById('firstname').style.display='none';" class=""style="float:right; font-size:0.5em; background-color:rgba(255,255,255,0.000000001); border:red 0px solid;">
+            <i class="fa fa-edit"></i>
+          </button>
+        </h1>
       </div>
 
 
