@@ -23,16 +23,16 @@ Write migrations to create the following tables:
 
 **users**
 
-| **id** |   **last_name**  |  **first_name**  | **pseudo** |        **email**        | **password** | **is_a_teacher** | **is_admin** |
-| :----: | :--------------: | :--------------: | :--------: | :--------------------:  | :----------: | :--------------: |:-----------: |
-|   1    |      Poliard     |     Djimmy       |   Jey13    | poliarddjimmy@gmail.com |   23jim0488  |         1        |      1       |
-|   1    |      Joseph      |     Billy        |   Bil      |     jbilly@gmail.com    |   billy@123  |         0        |      0       |
+| **id** | **last_name** | **first_name** | **pseudo** |        **email**        | **password** | **is_a_teacher** | **is_admin** | **photo** |
+| :----: | :-----------: | :------------: | :--------: | :--------------------:  | :----------: | :--------------: |:-----------: | :-------: |
+|   1    |    Poliard    |     Djimmy     |   Jey13    | poliarddjimmy@gmail.com |   23jim0488  |         1        |      1       |   ap.jpg  |
+|   1    |    Joseph     |     Billy      |   Bil      |     jbilly@gmail.com    |   billy@123  |         0        |      0       |   ap.png  |
 
 **Cours**
 
-| **id** |    **user_id**   |          **cours_name**        |               **cours_description**                |
-| :----: | :--------------: | :----------------------------: | :------------------------------------------------: |
-|   1    |         1        |  full-stack-web-development-v6 |  Welcome to Learn! Over the next 800-1000 hours... |
+| **id** |    **user_id**   |          **cours_name**        |               **cours_description**                | **photo** |
+| :----: | :--------------: | :----------------------------: | :------------------------------------------------: | :-------: |
+|   1    |         1        |  full-stack-web-development-v6 |  Welcome to Learn! Over the next 800-1000 hours... |   ap.jpg  |
 
 **moduls**
 
