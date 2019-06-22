@@ -208,6 +208,17 @@ class CourseController < ApplicationController
      end
    end
 
+   get '/delete/user/:id' do
+     if Helpers.is_logged_in? session
+       @user = User.find_by_id(params[:id])
+       if @user.delete
+         redirect to '/'
+       end
+     else
+       redirect to '/login'
+     end
+   end
+
 
 
 end
