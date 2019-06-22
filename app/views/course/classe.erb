@@ -21,20 +21,21 @@
 
 		<div class="jumbotron" style="width:100%;">
 			<style media="screen">
-				.course_list {color:rgba(255,255,255,1);}
+				.course_list a {color:rgba(255,255,255,1);}
 			</style>
+      <h1>
+  			<ol class="course_list">
+  				<% c = Course.all.each do |cour| %>
+            <% if @user.course_users.find_by_course_id(cour.id) %>
+  					<li><a href="/course/<%= cour.id %>" style="color:rgba(255,255,255,1);"><%= cour.course_name  %></a></li>
+            <% else %>
 
-			<ol class="course_list">
-				<% c = Course.all.each do |cour| %>
-          <% if @user.course_users.find_by_course_id(cour.id) %>
-					<li><h1><a href="/course/<%= cour.id %>"><%= cour.course_name  %></a></h1></li>
-          <% else %>
+            You don't subscribe to any <a href="/course">course</a>  yet <br>
+            <b><a href="/course">See all courses</a></b>
 
-          You don't subscribe to any <a href="/course">course</a>  yet <br>
-          <b><a href="/course">See all courses</a></b>
-
-				<% end end %>
-			</ol>
+  				<% end end %>
+  			</ol>
+      </h1>
 
 		</div>
 

@@ -16,7 +16,7 @@
 
       <ul class="nav nav-tabs">
         <li class="nav-item">
-          <a class="nav-link active" data-toggle="tab" href="#description">Description</a>
+          <a class="nav-link active" data-toggle="tab" href="#descriptio">Description</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" data-toggle="tab" href="#modul">Modules</a>
@@ -29,7 +29,7 @@
             <% if @user.courses.find_by_id(@course.id) %>
               <a class="dropdown-item" data-toggle="tab" href="#new_modul">New module</a>
               <a class="dropdown-item" data-toggle="tab" href="#course_edit">Edit this course</a>
-              <a href="/course/delete/<%= @course.id %>">Delete this course</a>
+              <a class="dropdown-item"  href="/course/delete/<%= @course.id %>">Delete this course</a>
             <% end %>
 
             <div class="dropdown-divider"></div>
@@ -38,8 +38,8 @@
         </li>
       </ul>
       <div id="myTabContent" class="tab-content">
-        <div class="tab-pane fade show active" id="description">
-          <p style="color:rgba(255,255,255,1);"><%= @course.course_description  %></p>
+        <div class="tab-pane fade show active" id="descriptio">
+          <p style="color:rgba(255,255,255,1);"><%= @course.course_description %></p>
         </div>
         <div class="tab-pane fade" id="modul">
           <% if @course.moduls.size.to_i == 0  %>
@@ -195,7 +195,7 @@
 
 
                       <label>Description
-                          <textarea id="summernote" name="cours_description" value="" style="width:; resize: vertical; min-height:50px; border:rgba(255,255,255,0.00001) solid 1px;" class="form-control para1" type="text" placeholder="Votre paragraphe ici"><%= @course.course_description%></textarea>
+                          <textarea id="summernote" name="course_description" value="" style="width:; resize: vertical; min-height:50px; border:rgba(255,255,255,0.00001) solid 1px;" class="form-control para1" type="text" placeholder="Votre paragraphe ici"><%= @course.course_description%></textarea>
                       </label>
 
 
