@@ -51,6 +51,15 @@ class UsersController < ApplicationController
     end
   end
 
+  get '/students' do
+    if Helpers.is_logged_in? session
+      @user = Helpers.current_user session
+      erb :'user/student'
+    else
+      redirect to '/'
+    end
+  end
+
   get '/update/user/:id/:di' do
      user = User.find_by_id(params[:id])
      if user.update(is_admin: params[:di])
@@ -60,7 +69,7 @@ class UsersController < ApplicationController
      end
    end
 
-   get '/user/profile/:pseudo' do
+   get '/profile/user=:pseudo' do
      if Helpers.is_logged_in? session
        @user1 = Helpers.current_user session
        @user = User.find_by_pseudo(params[:pseudo])
