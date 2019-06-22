@@ -46,7 +46,8 @@ button:hover, a:hover {
     </div>
 
     <br>
-    <% User.all.map do |user| %>
+    <% if @see  %>
+    <% @see.map do |user| %>
     <% if user.id != @user.id %>
 
     <div class="card col-sm-3 col-xs-12">
@@ -70,7 +71,7 @@ button:hover, a:hover {
       </div>
       <p><button>Contact</button></p>
     </div>
-    <% end end %>
+    <% end end end %>
 
 
   </div>

@@ -51,10 +51,13 @@ class UsersController < ApplicationController
     end
   end
 
-  get '/students' do
+  get '/see/:what' do
     if Helpers.is_logged_in? session
       @user = Helpers.current_user session
-      erb :'user/student'
+      if params[:what] == 'students'
+        @see = User.all.find_by_is_a_teacher(0)
+        erb :'user/see'
+      end
     else
       redirect to '/'
     end

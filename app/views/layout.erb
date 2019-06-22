@@ -158,42 +158,49 @@
               <a class="nav-link" href="/course">Course</a>
             </li>
 
-              <li class="nav-item">
-                <a class="nav-link" href="/students">Students</a>
-              </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/teachers">Teachers</a>
+            </li>
 
-           <!-- Dropdown -->
-          <li class="nav-item dropdown">
+            <li class="nav-item">
+              <a class="nav-link" href="/see/students">Students</a>
+            </li>
 
-            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-              Options
-            </a>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="/profile/user=<%= @user.pseudo %>">Profile</a>
-              <% if @user.is_admin.to_i == 1   %>
-              <a class="dropdown-item" data-toggle="modal" data-target="#myModal1" href="#myModal1">New teacher</a>
-              <% end %>
-              <a class="dropdown-item" href="/logout">Logout</a>
-            </div>
-          </li>
+            <!-- Dropdown -->
+            <li class="nav-item dropdown">
+
+              <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                Options
+              </a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="/profile/user=<%= @user.pseudo %>">Profile</a>
+                <% if @user.is_admin.to_i == 1   %>
+                <a class="dropdown-item" data-toggle="modal" data-target="#myModal1" href="#myModal1">New teacher</a>
+                <% end %>
+                <a class="dropdown-item" href="/logout">Logout</a>
+              </div>
+            </li>
           </ul>
         </div>
         </div>
       </nav>
       <% end %>
-
-      <% if flash[:teacher] %>
-        <div id="success" style="color:rgba(255,255,255,1);">
-        <%= flash[:teacher] %>
+      <div class="container">
+        <div class="row">
+          <% if flash[:teacher] %>
+            <div id="success" style="color:rgba(255,255,255,1);">
+            <%= flash[:teacher] %>
+            </div>
+            <br>
+          <% end %>
         </div>
-        <br>
-      <% end %>
+      </div>
+
 
       <div class="modal" id="myModal1">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <form id="" action="/teacher/new" method="post" >
-              <input id="hidden" type="hidden" name="_method" value="PATCH">
               <div class="modal-header">
                 <h5 class="modal-title">New teacher</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
