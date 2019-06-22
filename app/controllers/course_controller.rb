@@ -108,6 +108,8 @@ class CourseController < ApplicationController
   post '/modul/new'do
     modul = Modul.find_by(modul_title: params[:modul_title]) unless params[:modul_title].empty?
     if !modul
+      m = Modul.all.where(course_id: params[:course_id])
+      params[:modul_number] = m.size.to_i + 1
       modul = Modul.new params
 
       if modul.save
