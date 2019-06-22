@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190622010218) do
+ActiveRecord::Schema.define(version: 20190620010253) do
 
   create_table "course_users", force: :cascade do |t|
     t.integer "user_id"
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 20190622010218) do
     t.string  "pseudo"
     t.string  "email"
     t.string  "password_digest"
-    t.string  "is_a_teacher"
+    t.integer "is_a_teacher"
     t.integer "is_admin"
     t.string  "photo"
   end

@@ -1,4 +1,4 @@
-<% @title ='Students' %>
+<% @title = @what %>
 <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" />
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -42,12 +42,12 @@ button:hover, a:hover {
 <div class="container">
   <div class="row">
     <div class="col-sm-12 col-xs-12">
-      <h2 style="text-align:">List of students</h2>
+      <h2 style="text-align:">List of <%= @what %></h2>
     </div>
 
     <br>
     <% if @see  %>
-    <% @see.map do |user| %>
+    <% @see.each do |user| %>
     <% if user.id != @user.id %>
 
     <div class="card col-sm-3 col-xs-12">

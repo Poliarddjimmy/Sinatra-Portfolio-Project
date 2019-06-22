@@ -53,15 +53,29 @@ class UsersController < ApplicationController
 
   get '/see/:what' do
     if Helpers.is_logged_in? session
+      @what = params[:what]
       @user = Helpers.current_user session
       if params[:what] == 'students'
-        @see = User.all.find_by_is_a_teacher(0)
+        @see = User.all.find_by_is_a_teacher("0")
+        erb :'user/see'
+      else
+        @see = User.all.find_by_is_a_teacher("1")
         erb :'user/see'
       end
     else
       redirect to '/'
     end
   end
+
+  get '/teachers' do
+    if Helpers.is_logged_in? session
+      @user = Helpers.current_user session
+      erb :'teacher/index'
+    else
+      redirect to '/'
+    end
+  end
+
 
   get '/update/user/:id/:di' do
      user = User.find_by_id(params[:id])

@@ -6,7 +6,9 @@ class CreateUsers < ActiveRecord::Migration
       u.string :pseudo
       u.string :email
       u.string :password_digest
-      u.string :is_a_teacher
+      u.integer :is_a_teacher
+      u.integer :is_admin
+      u.string :photo
     end
   end
 end
