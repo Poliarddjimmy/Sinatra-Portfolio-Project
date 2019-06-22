@@ -174,6 +174,14 @@ class CourseController < ApplicationController
     end
   end
 
+  get '/modul/delete/:id' do
+    @modul = Modul.find_by_id(params[:id])
+    if @modul.delete
+      flash[:success] = 'The modul has been deleted successfully'
+      redirect "/course/#{@modul.course_id}"
+    end
+  end
+
   get '/update/:id/:number' do
      modul = Modul.find_by_id(params[:id])
      if modul.update(modul_number: params[:number])

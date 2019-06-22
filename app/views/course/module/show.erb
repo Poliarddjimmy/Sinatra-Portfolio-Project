@@ -132,7 +132,7 @@
             });
           </script>
         </div>
-        <% modula = Modul.find_by_modul_number(@modul.modul_number.to_i + 1) %>
+        <% modula = Modul.find_by_modul_number_and_course_id(@modul.modul_number.to_i + 1, @modul.course_id) %>
 
         <% if modula  %>
           <a href="/course/<%= modula.course_id %>/<%= modula.modul_title.to_s.parameterize %>/<%= modula.modul_number %>" class="btn btn-outline-warning"  style="font-size:1.3em; display:block; margin-top:15px;">
@@ -143,6 +143,11 @@
         <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#myModal" style="font-size:1.3em; display:block; margin-top:15px; width:100%;">
           Edit this module
         </button>
+
+        <a href="/modul/delete/<%= @modul.id %>" class="btn btn-outline-danger" style="font-size:1.3em; display:block; margin-top:15px; width:100%;">
+          Delete this module
+        </a>
+
         <% end %>
     </diV>
 
