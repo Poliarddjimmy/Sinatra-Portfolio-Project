@@ -1,0 +1,74 @@
+ <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" />
+ <% @title ="Teachers" %>
+
+
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ <style>
+ .card {
+   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+   /*max-width: 300px;*/
+   margin: auto;
+   text-align: center;
+   font-family: arial;
+ }
+
+ .title {
+   color: grey;
+   font-size: 18px;
+ }
+
+ button {
+   border: none;
+   outline: 0;
+   display: inline-block;
+   padding: 8px;
+   color: white;
+   background-color: #000;
+   text-align: center;
+   cursor: pointer;
+   width: 100%;
+   font-size: 18px;
+ }
+
+ a {
+   text-decoration: none;
+   font-size: 22px;
+   color: black;
+ }
+
+ button:hover, a:hover {
+   opacity: 0.7;
+ }
+ </style>
+ <div class="container">
+   <div class="row">
+     <div class="col-sm-12 col-xs-12">
+       <h2 style="text-align:">List of <%= @what %></h2>
+     </div>
+
+     <br>
+     <% User.all.each do |user| %>
+     <% if user.id != @user.id && user.is_a_teacher == 1 %>
+
+     <div class="card col-sm-3 col-xs-12">
+       <div class="" style="text-align:center;">
+         <img src="images/user.png" alt="John" style="width:50%;" class="thumbnail">
+       </div>
+       <h4><%= user.last_name %> <%= user.first_name %></h4>
+       <% us = user.course_users.all#CourseUser.find_by_user_id(user.id) %>
+       <% uss = us.last %>
+       sdfsd
+       <p>LearnHt</p>
+       <div style="margin: 24px 0;">
+         <a href="#"><i class="fa fa-dribbble"></i></a>
+         <a href="#"><i class="fa fa-twitter"></i></a>
+         <a href="#"><i class="fa fa-linkedin"></i></a>
+         <a href="#"><i class="fa fa-facebook"></i></a>
+       </div>
+       <p><button>Contact</button></p>
+     </div>
+     <% end end %>
+
+
+   </div>
+ </div>
