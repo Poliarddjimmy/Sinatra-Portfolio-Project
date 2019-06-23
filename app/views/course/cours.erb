@@ -2,6 +2,7 @@
 <br>
 
 <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <% @title = "Course" %>
 
 <div class="container">
@@ -19,20 +20,31 @@
       </div>
     -->
 
-		<div class="jumbotron col-sm-9 col-xs-12" style="width:100%;">
+		<div class="col-sm-9 col-xs-12" style="width:100%;">
 			<style media="screen">
 				.course_list a{color:rgba(255,255,255,1);}
 			</style>
-			<h1>
-				<ol class="course_list">
           <% if Course.all.size.to_i == 0 %>
             <a>There is no course publish yet</a>
           <% end %>
 					<% c = Course.all.each do |cour| %>
-						<li><a href="/course/<%= cour.id %>"><%= cour.course_name  %></a></li>
+          <div class="card col-sm-3 col-xs-12 flex" style="float:left; margin-right:50px;">
+            <h4 style="margin-top:20px;">name</h4>
+
+                <p>No course at this time</p>
+                    <p class="title">No publication yet</p>
+
+            <p>LearnHt</p>
+            <div style="margin: 24px 0;">
+              <a href="#"><i class="fa fa-dribbble"></i></a>
+              <a href="#"><i class="fa fa-twitter"></i></a>
+              <a href="#"><i class="fa fa-linkedin"></i></a>
+              <a href="#"><i class="fa fa-facebook"></i></a>
+            </div>
+            <p><a href="" class="button">see profile</a></p>
+          </div>
+
 					<% end %>
-				</ol>
-			</h1>
 		</div>
     <div class="jumbotron col-sm-3 col-xs-12" style="float:right; border-left:rgba(255,255,255,0.1) 1px solid;">
       <% if @user.is_a_teacher.to_i == 1 || @user.is_admin.to_i == 1   %>

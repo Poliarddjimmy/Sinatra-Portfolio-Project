@@ -5,32 +5,20 @@
 </style>
 <% @title = @user.pseudo %>
 
-<div class="banner">
+
+<div class="banner" align="center">
 	<div class="container">
-	<div class="banner-text">
-	<div class="banner-heading">
-	Glad to see you <%= @user.pseudo  %> !
-	</div>
-	<div class="banner-sub-heading">
-	Click here to go to your class
-	</div>
-	<a href="/class/course" type="button" class="btn btn-warning text-dark btn-banner">Go</a>
-	</div>
-	</div>
-</div>
-<section id="about" style="background-color:rgba(255,255,255,1);">
-	<div class="container">
-		<div class="text-intro">
-		<h2></h2>
-			<br>
+		<div class="banner-text">
+			<div class="banner-heading">
+				Glad to see you <%= @user.pseudo  %> !
+			</div>
+			<div class="banner-sub-heading">
+				Click here to go to your class
+			</div>
+			<a href="/class/course" type="button" class="btn btn-warning text-dark btn-banner">Go</a>
 		</div>
 	</div>
-</section>
-
-
-
-
-
+</div>
 <script type="text/javascript">
 
 $(document).on("scroll", function(){

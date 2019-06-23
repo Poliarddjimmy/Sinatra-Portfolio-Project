@@ -132,17 +132,6 @@ nav{-webkit-transition: padding-top .3s,padding-bottom .3s;
     background-color: #212529;
 }
 .banner{
-	background-image:url('http://www.hd-freewallpapers.com/latest-wallpapers/abstract-website-backgrounds..jpg');
-	text-align: center;
-    color: #fff;
-
-    background-repeat: no-repeat;
-    background-attachment: scroll;
-    background-position: center center;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
 }
 .banner-text{
 	padding:200px 0 150px 0;
