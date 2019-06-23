@@ -168,7 +168,7 @@ class UsersController < ApplicationController
   get '/delete/user/:id' do
     if Helpers.is_logged_in? session
       @user = User.find_by_id(params[:id])
-      if @user.delete
+      if @user.destroy
         redirect to '/logout'
       end
     else

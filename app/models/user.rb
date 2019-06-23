@@ -5,10 +5,10 @@ class User < ActiveRecord::Base
   validates :email, presence: true
   has_secure_password
 
-  has_many :course_users
-  has_many :modul_users
+  has_many :course_users, dependent: :destroy
+  has_many :modul_users, dependent: :destroy
 
-  has_many :courses
+  has_many :courses, dependent: :destroy
 
   def self.find_by_slug(slug)
     self.all.find{ |user| user.slug == slug }

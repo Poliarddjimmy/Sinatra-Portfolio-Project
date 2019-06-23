@@ -1,5 +1,5 @@
 class Course < ActiveRecord::Base
-  belongs_to :user
-  has_many :moduls
-  has_many :course_users
+  belongs_to :user, dependent: :destroy
+  has_many :moduls, dependent: :destroy
+  has_many :course_users, dependent: :destroy
 end

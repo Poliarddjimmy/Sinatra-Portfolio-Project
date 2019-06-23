@@ -176,13 +176,13 @@ class CourseController < ApplicationController
     if Helpers.is_logged_in? session
       if params[:what] == 'course'
         @course = CourseUser.all
-        if @course.clear
+        if @course.delete_all
           flash[:teacher] = 'All course\'s class has been clear'
           redirect back
         end
       elsif params[:what] == 'module'
         @modul = ModulUser.all
-        if @modul.delete
+        if @modul.delete_all
           flash[:teacher] = 'All module\'s class has been clear'
           redirect back
         end
