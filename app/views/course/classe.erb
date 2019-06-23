@@ -2,40 +2,49 @@
 <br>
 
 <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" />
-<% @title = "Course" %>
+<% @title = "My class" %>
 
 <div class="container">
   <div class="row">
     <style media="screen">
       .card{display:flex; margin:5px;}
     </style>
-    <!--
-      <div class="card border-secondary mb-3" style="max-width: 20rem;">
-        <div class="card-header">Header</div>
-        <div class="card-body">
-          <h4 class="card-title">Secondary card title</h4>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-      </div>
-    -->
 
-		<div class="jumbotron" style="width:100%;">
+		<div class="" style="width:100%;">
 			<style media="screen">
 				.course_list a {color:rgba(255,255,255,1);}
 			</style>
-      <h1>
-  			<ol class="course_list">
-  				<% c = Course.all.each do |cour| %>
-            <% if @user.course_users.find_by_course_id(cour.id) %>
-  					<li><a href="/course/<%= cour.id %>" style="color:rgba(255,255,255,1);"><%= cour.course_name  %></a></li>
-            <% else %>
+      <% c = Course.all %>
+      <% if c %>
+      <% if @user.course_users.where(course_id: c.ids).all.size.to_i == 0 %>
+        You don't subscribe to any <a href="/course">course</a>  yet <br>
+        <b><a href="/course">See all courses</a></b>
+      <% end %>
+			<% c.each do |cour| %>
+        <% if @user.course_users.find_by_course_id(cour.id) %>
+        <div class="card col-sm-3 col-xs-12 flex" style="float:left; margin-right:50px;">
+          <h4 style="margin-top:20px;height:100px;"><%= cour.course_name %></h4>
+          <p style="height:70px;"><%= cour.course_description[0,100] %>...</p>
+          <p class="title"> <%= 'by'.capitalize %>: <a><%= cour.user.last_name %> <%= cour.user.last_name %></a></p>
 
-            You don't subscribe to any <a href="/course">course</a>  yet <br>
-            <b><a href="/course">See all courses</a></b>
+          <div class="course" style="margin: 24px 0;">
+            <style media="screen">
+              .course a{margin-right:20px; color: rgba(255,255,255,1);}
+            </style>
+            <a href="#"><i class="fa fa-users"></i> <%= cour.course_users.all.size.to_i %></a>
 
-  				<% end end %>
-  			</ol>
-      </h1>
+            <a href="#">Module <%= cour.moduls.all.size.to_i %></a>
+          </div>
+          <p><a href="/course/<%= cour.id %>" class="button">Go to course</a></p>
+        </div>
+        <% end %>
+        <% end %>
+        <% else %>
+
+        You don't subscribe to any <a href="/course">course</a>  yet <br>
+        <b><a href="/course">See all courses</a></b>
+
+			<%  end %>
 
 		</div>
 

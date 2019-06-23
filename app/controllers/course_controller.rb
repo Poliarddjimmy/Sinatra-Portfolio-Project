@@ -148,11 +148,12 @@ class CourseController < ApplicationController
     @user = Helpers.current_user session
     @moduse = @user.modul_users.find_by_modul_id(params[:modul_id])
     if @moduse
-
+      redirect back
     else
       @moduse = ModulUser.new params
       if @moduse.save
-
+        flash[:success] = 'Your subscription has been a success'
+        redirect back
       end
     end
   end
@@ -161,7 +162,7 @@ class CourseController < ApplicationController
     @user = Helpers.current_user session
     @coruse = @user.course_users.find_by_course_id(params[:course_id])
     if @coruse
-
+      redirect back
     else
       @corus = CourseUser.new params
       if @corus.save
@@ -221,7 +222,13 @@ class CourseController < ApplicationController
      end
    end
 
-
+   get '/plot/:id' do
+     @d = CourseUser.find_by_id(params[:id])
+     if @d.delete
+       flash[:success] = 'The course has been deleted successfully'
+       redirect back
+     end
+   end
 
 
 
