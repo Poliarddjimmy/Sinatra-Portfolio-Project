@@ -10,15 +10,6 @@
     <style media="screen">
       .card{display:flex; margin:5px;}
     </style>
-    <!--
-      <div class="card border-secondary mb-3" style="max-width: 20rem;">
-        <div class="card-header">Header</div>
-        <div class="card-body">
-          <h4 class="card-title">Secondary card title</h4>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-      </div>
-    -->
 
 		<div class="col-sm-9 col-xs-12" style="width:100%;">
 			<style media="screen">
@@ -28,20 +19,20 @@
             <a>There is no course publish yet</a>
           <% end %>
 					<% c = Course.all.each do |cour| %>
-          <div class="card col-sm-3 col-xs-12 flex" style="float:left; margin-right:50px;">
-            <h4 style="margin-top:20px;">name</h4>
+          <div class="card col-sm-5 col-xs-12 flex" style="float:left; margin-right:50px;">
+            <h4 style="margin-top:20px;height:100px;"><%= cour.course_name %></h4>
+            <p style="height:70px;"><%= cour.course_description[0,100] %>...</p>
+            <p class="title"> <%= 'by'.capitalize %>: <a><%= cour.user.last_name %> <%= cour.user.last_name %></a></p>
 
-                <p>No course at this time</p>
-                    <p class="title">No publication yet</p>
+            <div class="course" style="margin: 24px 0;">
+              <style media="screen">
+                .course a{margin-right:20px; color: rgba(255,255,255,1);}
+              </style>
+              <a href="#"><i class="fa fa-users"></i> <%= cour.course_users.all.size.to_i %></a>
 
-            <p>LearnHt</p>
-            <div style="margin: 24px 0;">
-              <a href="#"><i class="fa fa-dribbble"></i></a>
-              <a href="#"><i class="fa fa-twitter"></i></a>
-              <a href="#"><i class="fa fa-linkedin"></i></a>
-              <a href="#"><i class="fa fa-facebook"></i></a>
+              <a href="#">Module <%= cour.moduls.all.size.to_i %></a>
             </div>
-            <p><a href="" class="button">see profile</a></p>
+            <p><a href="/course/<%= cour.id %>" class="button">Go to course</a></p>
           </div>
 
 					<% end %>
