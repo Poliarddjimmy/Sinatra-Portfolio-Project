@@ -12,6 +12,7 @@
 }
 
 .title {
+  font-size: 22px;
   color: grey;
 }
 
@@ -43,7 +44,13 @@ button:hover, a:hover {
     </div>
 
     <br>
+    <% if !@see %>
+    <div class="col-sm-12 col-xs-12">
+      No student for now
+    </div>
+    <% end %>
     <% if @see  %>
+    <%= @see.size.to_i %> Student<% if @see.size.to_i > 1 %>s <% end %> found
     <% @see.each do |user| %>
     <% if user.id != @user.id %>
 

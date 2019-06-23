@@ -56,10 +56,10 @@ class UsersController < ApplicationController
       @what = params[:what]
       @user = Helpers.current_user session
       if params[:what] == 'students'
-        @see = User.all.find_by_is_a_teacher("0")
+        @see = User.all.find_by_is_a_teacher(0)
         erb :'user/see'
       else
-        @see = User.all.find_by_is_a_teacher("1")
+        @see = User.all.find_by_is_a_teacher(1)
         erb :'user/see'
       end
     else

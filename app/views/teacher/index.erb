@@ -14,6 +14,7 @@
 
  .title {
    color: grey;
+   font-size: 22px;
  }
 
  button {
@@ -40,7 +41,7 @@
  <div class="container">
    <div class="row">
      <div class="col-sm-12 col-xs-12">
-       <h2 style="text-align:">List of <%= @what %></h2>
+       <h2 style="text-align:">List of Teachers
      </div>
 
      <br>
@@ -52,13 +53,7 @@
          <img src="images/user.png" alt="John" style="width:50%;" class="thumbnail">
        </div>
        <h4><%= user.last_name %> <%= user.first_name %></h4>
-       <% us = user.course_users.all#CourseUser.find_by_user_id(user.id) %>
-       <% uss = us.last %>
-       <% if @co = Course.find_by_id(uss.course_id) %>
-         <p class="title"><%= @co.course_name %></p>
-         <% else %>
-           <p>No course at this time</p>
-       <% end %>
+       <p class="title">History</p>
        <p>LearnHt</p>
        <div style="margin: 24px 0;">
          <a href="#"><i class="fa fa-dribbble"></i></a>

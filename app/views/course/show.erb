@@ -77,69 +77,42 @@
         </div>
         <div class="tab-pane fade" id="new_modul">
           <br>
-          <div class="form-style-10 prinska" style="margin: 0 auto;">
+          <div class="" style="margin: 0 auto;">
             <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
             <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
 
              <form id="" action="/modul/new" method="post">
-                  <style>
-                  .input-group-addon{width:100px;}
-                  .kk{min-width:250px;}
-                  </style>
+                 <div class="form-group">
+                   <label for="exampleInputEmail1">Title</label>
+                   <input type="text" name="modul_title" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Add the module title here">
+                   <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                   <input id="" name="course_id" value="<%= @course.id %>" type="hidden">
+                 </div>
 
-                  <div class="inner-wrap">
+                 <div class="form-group">
+                   <label for="exampleInputEmail1">Description</label>
+                   <textarea type="text" name="modul_description" class="form-control" id="summernote" aria-describedby="emailHelp" placeholder="Add the module description here"></textarea>
+                   <small id="" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                 </div>
 
-                      <label>Title
-                          <input id="titre1" name="modul_title" value="" style="width:; border:rgba(255,255,255,0.00001) solid 1px; border-radius:0px;" class="form-control titre" type="text" placeholder="Add the module title">
-                          <input id="" name="course_id" value="<%= @course.id %>" type="hidden">
-                      </label>
+                 <div class="form-group">
+                   <label for="exampleInputEmail1">Content</label>
+                   <textarea type="text" name="modul_content" class="form-control" id="summernote" aria-describedby="emailHelp" placeholder="Add the module content here"></textarea>
+                   <small id="" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                 </div>
 
+                <script>
+                  $(document).ready(function() {
+                      $('#summernote').summernote();
+                  });
+                </script>
 
-                      <label>Description
-                          <textarea id="" name="modul_description" value="" style="width:; resize: vertical; min-height:50px; border:rgba(255,255,255,0.00001) solid 1px;" class="form-control para1" type="text" placeholder="The module description here"></textarea>
-                      </label>
-
-
-                      <label>Description
-                          <textarea id="summernote" name="modul_content" value="" style="width:; resize: vertical; min-height:50px; border:rgba(255,255,255,0.00001) solid 1px;" class="form-control para1" type="text" placeholder="The content here"></textarea>
-                      </label>
-
-                      <script>
-                        $(document).ready(function() {
-                            $('#summernote').summernote();
-                        });
-                      </script>
-
-                      <button type="submit"  class="dark pull-right button" style="margin-right:10px;margin-top:;">
-                        Soumettre
-                      </button>
-                      <br>
-
-                  </div>
+                <button type="submit"  class="btn btn-sm btn-success" style="margin-right:10px;margin-top:;">
+                  Soumettre
+                </button>
+                <br>
 
               </form>
-
-            <script type="text/javascript">
-              $(document).ready(function() {
-                // submit form using $.ajax() method
-                $('#addc').submit(function(e){
-                  e.preventDefault(); // Prevent Default Submission
-                  $.ajax({
-                    url: '/ajouter/cours/',
-                    type: 'POST',
-                    data: $(this).serialize() // it will serialize the form data
-                  })
-                    .done(function(data){
-                    $('#addc').fadeOut('slow', function(){
-                      $('#addc').fadeIn('slow').html(data);
-                    });
-                  })
-                    .fail(function(){
-                    alert('Ajax Submit Failed ...');
-                  });
-                });
-              });
-            </script>
 
           </div>
         </div>
@@ -177,36 +150,29 @@
         </div>
 
         <div class="tab-pane fade" id="course_edit">
-          <div class="form-style-10 prinska" style="margin: 0 auto;">
+          <br>
+          <div class="" style="margin: 0 auto;">
 
              <form id="" action="/edit/course/<%= @course.id %>" method="post" >
-                  <style>
-                  .input-group-addon{width:100px;}
-                  .kk{min-width:250px;}
-                  </style>
+                <input id="hidden" type="hidden" name="_method" value="PATCH">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Course's name</label>
+                  <input type="text" name="course_name" value="<%= @course.course_name %>" class="form-control" aria-describedby="emailHelp" placeholder="Add the module content here">
+                  <small id="" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
 
-                  <div class="inner-wrap">
-                    <input id="hidden" type="hidden" name="_method" value="PATCH">
-
-                      <label>Name
-                          <input id="titre1" name="course_name" value="<%= @course.course_name %>" style="width:; border:rgba(255,255,255,0.00001) solid 1px; border-radius:0px;" class="form-control titre" type="text" placeholder="Ajouter le nom du cours">
-                          <!--<input id="" name="user_id" value="<%= @user.id %>" type="hidden">-->
-                      </label>
-
-
-                      <label>Description
-                          <textarea id="summernote" name="course_description" value="" style="width:; resize: vertical; min-height:50px; border:rgba(255,255,255,0.00001) solid 1px;" class="form-control para1" type="text" placeholder="Votre paragraphe ici"><%= @course.course_description%></textarea>
-                      </label>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Description of the course</label>
+                  <textarea type="text" name="course_description" class="form-control" name="cours_description" id="summernote" aria-describedby="emailHelp" placeholder="The course's name" style="resize: vertical; min-height:50px;"><%= @course.course_description%></textarea>
+                  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
 
 
 
-                      <button type="submit"  class="dark pull-right button" style="margin-right:10px;margin-top:;">
-                        Edit
-                      </button>
-                      <br>
-
-                  </div>
-
+                <button type="submit"  class="btn btn-sm btn-info" style="margin-right:10px;margin-top:;">
+                  Edit
+                </button>
+                <br>
               </form>
 
           </div>
