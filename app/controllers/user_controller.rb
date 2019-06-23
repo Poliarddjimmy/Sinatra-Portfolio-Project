@@ -77,6 +77,24 @@ class UsersController < ApplicationController
      end
    end
 
+   patch '/edit/password/:di' do
+     if Helpers.is_logged_in? session
+        @user = Helpers.current_user session
+        if @user.authenticate(params[:password])
+          if @user.update(password: params[:pwd])
+            flash[:success] = 'Your password has been change'
+            redirect back
+          end
+        else
+          flash[:success] = 'The old password is incorrect'
+          redirect back
+        end
+
+      else
+        redirect to '/'
+      end
+    end
+
    get '/profile/user=:pseudo' do
      if Helpers.is_logged_in? session
        @user1 = Helpers.current_user session
