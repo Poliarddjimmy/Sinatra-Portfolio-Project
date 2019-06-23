@@ -15,20 +15,21 @@
       No student for now
     </div>
     <% end %>
+    <div class=" col-sm-10 col-xs-12">
     <% if @see  %>
     <% @see.map do |user| %>
     <% if user.id != @user.id %>
 
-    <div class="card col-sm-3 col-xs-12">
+    <div class="card col-sm-3 col-xs-12" style="float:left; margin:10px 25px 0;">
       <div class="" style="text-align:center;">
         <img src="/images/user.png" alt="John" style="width:50%;" class="thumbnail">
       </div>
-      <h4 style="margin-top:20px;"><%= user.last_name %> <%= user.first_name %></h4>
+      <h4 style="margin-top:20px; height:70px;"><%= user.last_name %> <%= user.first_name %></h4>
       <% if @what == 'students' %>
         <% us = user.course_users.all#CourseUser.find_by_user_id(user.id) %>
         <% if us && uss = us.last %>
         <% if @co = Course.find_by_id(uss.course_id) %>
-          <p class="title"><%= @co.course_name %></p>
+          <p class="title"><%= @co.course_name[0,19] %>..</p>
         <% end%>
         <% else %>
           <p>No course at this time</p>
@@ -56,6 +57,15 @@
       <p><a href="/profile/user=<%= user.pseudo %>" class="button">see profile</a></p>
     </div>
     <% end end end %>
+  </div>
+
+  <div class="jumbotron col-sm-2 col-xs-12" style="float:right; border-left:rgba(255,255,255,0.1) 1px solid;">
+    <% if @user.is_admin.to_i == 1   %>
+      <button class="dropdown-item btn btn-info btn-sm " data-toggle="modal" data-target="#myModal1" href="#">New teacher</button>
+      <div class="dropdown-divider"></div>
+      <button class="dropdown-item btn btn-warning btn-sm button" data-toggle="modal" data-target="#asteacher" href="#">As teacher</button>
+    <% end %>
+  </div>
 
 
   </div>

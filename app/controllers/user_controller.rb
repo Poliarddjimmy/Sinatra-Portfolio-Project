@@ -68,9 +68,10 @@ class UsersController < ApplicationController
   end
 
 
-  get '/update/user/:id/:di' do
+  post '/update/user' do
      user = User.find_by_id(params[:id])
-     if user.update(is_admin: params[:di])
+     if user.update(is_a_teacher: params[:is_a_teacher])
+       flash[:success] = 'The status of the user has been change'
        redirect back
      else
        return "med"
