@@ -68,13 +68,24 @@ class UsersController < ApplicationController
   end
 
 
-  post '/update/user' do
+  post '/change/:what' do
      user = User.find_by_id(params[:id])
-     if user.update(is_a_teacher: params[:is_a_teacher])
-       flash[:success] = 'The status of the user has been change'
-       redirect back
-     else
-       return "med"
+     if params[:what] == 'student'
+       if user.update(is_a_teacher: 0)
+         flash[:teacher] = 'The status of the user has been changed'
+         redirect back
+       else
+         flash[:teacher] = 'The status of the user wasn\'t changed'
+         redirect back
+       end
+     elsif params[:what] == 'teacher'
+       if user.update(is_a_teacher: 1)
+         flash[:teacher] = 'The status of the user has been changed'
+         redirect back
+       else
+         flash[:teacher] = 'The status of the user wasn\'t changed'
+         redirect back
+       end
      end
    end
 

@@ -151,15 +151,28 @@
                 <style media="screen">
                   .modal-body p{color: rgba(255,255,255,1)}
                 </style>
-                <% @us = User.all.where(is_a_teacher: 0) %>
+                <% @us = User.all %>
                 <% if @us %>
                   <% @us.each do |user| %>
-                    <div class="" style="float:left; width:200px; background-color:rgba(255,255,255,0.5); margin:10px 15px 0; padding:10px; text-align:center;" >
+                    <div class="card col-sm-5 col-xs-12" style="float:left;  background-color:rgba(255,255,255,0.5); margin:10px 15px 0; padding:10px; text-align:center;" >
+                      <div class="" style="text-align:center;">
+                        <img src="/images/user.png" alt="<%= user.pseudo %>" style="width:50%;" class="thumbnail">
+                      </div>
                       <a href="/profil/user=<%= user.pseudo %>"><%= user.last_name %> <%= user.first_name %></a>
-                      <form action="/update/user" method="post">
-                        <input type="hidden" name="is_a_teacher" value="1">
+                      <p>
+                        <% if user.is_a_teacher.to_i == 1 %>
+                          Teacher
+                        <% else %>
+                          Student
+                        <% end %>
+                      </p>
+                      <% if user.is_a_teacher.to_i == 1 %>
+                      <form action="/change/student" method="post">
+                      <% else %>
+                      <form action="/change/teacher" method="post">
+                      <% end %>
                         <input type="hidden" name="id" value="<%= user.id %>">
-                        <button type="submit" class="btn btn-primary" >Choose</button>
+                        <button type="submit" class="btn btn-primary" >change</button>
                       </form>
                     </div>
                   <% end %>
@@ -277,7 +290,7 @@
           <div class="modal-content">
             <form id="" action="/teacher/new" method="post" >
               <div class="modal-header">
-                <h5 class="modal-title">New teacher</h5>
+                <h5 class="modal-title">New user</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -288,6 +301,7 @@
                 <div class="form-group">
                   <label for="first_name">First name</label>
                   <select type="text" name="is_a_teacher" class="form-control" aria-describedby="emailHelp" placeholder="Choose the status of the user">
+                    <option value="0">Choose the status of the user here</option>
                     <option value="1">Teacher</option>
                     <option value="0">Student</option>
                   </select>
@@ -327,7 +341,7 @@
 
               </div>
               <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Save changes</button>
+                <button type="submit" class="btn btn-primary">Add</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               </div>
             </form>
