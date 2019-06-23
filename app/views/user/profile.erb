@@ -159,14 +159,19 @@ $(".btn-pref .btn").click(function () {
       </li>
       <li class="nav-item">
       </li>
+      <% if @user.id == @user1.id %>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Option</a>
         <div class="dropdown-menu">
 
           <div class="dropdown-divider"></div>
+
           <a class="dropdown-item" data-toggle="tab" href="#delete">Delete account</a>
+
         </div>
+
       </li>
+      <% end %>
     </ul>
     <div id="myTabContent" class="tab-content">
       <style media="screen">
