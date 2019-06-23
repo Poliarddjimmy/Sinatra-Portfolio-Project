@@ -159,11 +159,11 @@ $(".btn-pref .btn").click(function () {
       </li>
       <li class="nav-item">
       </li>
-      <% if @user.id == @user1.id %>
+      <% if @user.id == @user1.id ||  @user1.is_admin == 1 %>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Option</a>
         <div class="dropdown-menu">
-
+          <a class="dropdown-item" data-toggle="tab" href="#password">Chage password</a>
           <div class="dropdown-divider"></div>
 
           <a class="dropdown-item" data-toggle="tab" href="#delete">Delete account</a>
@@ -177,6 +177,31 @@ $(".btn-pref .btn").click(function () {
       <style media="screen">
         .tab-pane .fa{color:rgba(255,255,255,1);}
       </style>
+      <div class="tab-pane fade show" id="password">
+        <br>
+        <form id="" action="/edit/password/<%= @user.id %>" method="post" >
+           <input id="hidden" type="hidden" name="_method" value="PATCH">
+           <div class="form-group">
+             <label for="exampleInputEmail1">Old password</label>
+             <input type="password" name="password_old" class="form-control"  aria-describedby="emailHelp" placeholder="Old password here" style="">
+             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+           </div>
+
+           <div class="form-group">
+             <label for="exampleInputEmail1">New password</label>
+             <input type="password" name="password" class="form-control" aria-describedby="emailHelp" placeholder="New password here" style="">
+             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+           </div>
+
+
+
+           <button type="submit"  class="btn btn-sm btn-info" style="margin-right:10px;margin-top:;">
+             Change
+           </button>
+           <br>
+         </form>
+      </div>
+
       <div class="tab-pane fade show" id="delete">
         <br>
         <a href="/delete/user/<%= @user.id %>" class="btn btn-warning"> Click here if you realy want to delete your account</a>
