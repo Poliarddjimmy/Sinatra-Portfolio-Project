@@ -131,6 +131,8 @@
             </div>
             <br>
           <% end %>
+
+          <span class="alert"></span>
         </div>
       </div>
 
@@ -187,13 +189,79 @@
                   .modal-body p{color: rgba(255,255,255,1)}
                 </style>
                 <p >
-                  Click here to clear all Course's class
-                  <a href="/delete/course" class="btn btn-primary btn-sm" style="float:right; margin-top:-7px;">Clear course's class</a>
+                  <form id="deletecourse" action="/delete/course" method="post" style=" display:block;">
+                    Click here to clear all Course's class
+                    <button id="deletecourse_submit" class="btn btn-primary btn-sm" style="float:right; margin-top:-7px;">Clear course's class</button>
+                  </form>
                 </p>
                 <div class="dropdown-divider" style="margin-bottom:20px;"></div>
                 <p >
-                  Click here to clear all Module's class
-                  <a href="/delete/module" class="btn btn-info btn-sm" style="float:right; margin-top:-7px;">Clear module's class</a>
+                  <form id="deletemodul" action="/delete/module" method="post" style="display:block;">
+                    Click here to clear all Module's class
+                    <button id="deletemodul_submit" type="submit" class="btn btn-info btn-sm" style="float:right; margin-top:-7px;">Clear module's class</button>
+                  </form>
+
+                  <script type="text/javascript">
+                    $(document).ready(function() {
+                    var form = $('#deletemodul'); // contact form
+                    var submit = $('#deletemodul_submi');  // submit button
+                    var alert = $('.alert'); // alert div for show alert message
+
+                    // form submit event
+                    form.on('submit', function(e) {
+                     e.preventDefault(); // prevent default form submit
+
+                     $.ajax({
+                       url: '/delete/module', // form action url
+                       type: 'POST', // form submit method get/post
+                       dataType: 'html', // request type html/json/xml
+                       data: form.serialize(), // serialize form data
+                       beforeSend: function() {
+                         alert.fadeOut();
+                         //submit.html('Envoyer'); // change submit button text
+                       },
+                       success: function(data) {
+                         alert.html(data).fadeIn(); // fade in response data
+                         form.trigger('reset'); // reset form
+                       },
+                       error: function(e) {
+                         console.log(e)
+                       }
+                     });
+                    });
+                    });
+                    </script>
+
+                    <script type="text/javascript">
+                      $(document).ready(function() {
+                      var form = $('#deletecourse'); // contact form
+                      var submit = $('#deletecourse_submi');  // submit button
+                      var alert = $('.alert'); // alert div for show alert message
+
+                      // form submit event
+                      form.on('submit', function(e) {
+                       e.preventDefault(); // prevent default form submit
+
+                       $.ajax({
+                         url: '/delete/course', // form action url
+                         type: 'POST', // form submit method get/post
+                         dataType: 'html', // request type html/json/xml
+                         data: form.serialize(), // serialize form data
+                         beforeSend: function() {
+                           alert.fadeOut();
+                           //submit.html('Envoyer'); // change submit button text
+                         },
+                         success: function(data) {
+                           alert.html(data).fadeIn(); // fade in response data
+                           form.trigger('reset'); // reset form
+                         },
+                         error: function(e) {
+                           console.log(e)
+                         }
+                       });
+                      });
+                      });
+                      </script>
                 </p>
                 <div class="dropdown-divider"></div>
               </div>
@@ -215,7 +283,17 @@
                 </button>
               </div>
               <div class="modal-body">
-                <p style="color:rgba(255,255,255,1);">Filout this form to add a teacher</p>
+                <p style="color:rgba(255,255,255,1);">Filout this form to add a new user</p>
+
+                <div class="form-group">
+                  <label for="first_name">First name</label>
+                  <select type="text" name="is_a_teacher" class="form-control" aria-describedby="emailHelp" placeholder="Choose the status of the user">
+                    <option value="1">Teacher</option>
+                    <option value="0">Student</option>
+                  </select>
+                  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+
                 <div class="form-group">
                   <label for="first_name">First name</label>
                   <input type="text" name="first_name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter the teacher's first name">
@@ -243,7 +321,6 @@
                 </div>
 
                 <input type="hidden" name="password" value="123">
-                <input type="hidden" name="is_a_teacher" value="1">
                 <input type="hidden" name="is_admin" value="0">
 
 

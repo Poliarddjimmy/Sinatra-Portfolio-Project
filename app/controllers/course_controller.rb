@@ -172,19 +172,21 @@ class CourseController < ApplicationController
     end
   end
 
-  get '/delete/:what' do
+  post '/delete/:what' do
     if Helpers.is_logged_in? session
       if params[:what] == 'course'
         @course = CourseUser.all
         if @course.delete_all
-          flash[:teacher] = 'All course\'s class has been clear'
-          redirect back
+          #flash[:teacher] = 'All course\'s class has been clear'
+          #redirect back
+          return 'All course\'s class has been clear'
         end
       elsif params[:what] == 'module'
         @modul = ModulUser.all
         if @modul.delete_all
-          flash[:teacher] = 'All module\'s class has been clear'
-          redirect back
+          #flash[:teacher] = 'All module\'s class has been clear'
+          #redirect back
+          return 'All module\'s class has been clear'
         end
       end
     else

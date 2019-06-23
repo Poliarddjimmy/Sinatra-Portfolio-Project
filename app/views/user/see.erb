@@ -61,9 +61,9 @@
 
   <div class="jumbotron col-sm-2 col-xs-12" style="float:right; border-left:rgba(255,255,255,0.1) 1px solid;">
     <% if @user.is_admin.to_i == 1   %>
-      <button class="dropdown-item btn btn-info btn-sm " data-toggle="modal" data-target="#myModal1" href="#">New teacher</button>
+      <a class="dropdown-item btn btn-info btn-sm " data-toggle="modal" data-target="#myModal1" style="text-align:center;" href="#">Add</a>
       <div class="dropdown-divider"></div>
-      <button class="dropdown-item btn btn-warning btn-sm button" data-toggle="modal" data-target="#asteacher" href="#">As teacher</button>
+      <a class="dropdown-item btn btn-warning btn-sm button" data-toggle="modal" data-target="#asteacher" style="text-align:center;" href="#">Change status</a>
     <% end %>
   </div>
 
