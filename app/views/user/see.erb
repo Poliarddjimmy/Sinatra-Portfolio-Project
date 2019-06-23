@@ -50,22 +50,36 @@ button:hover, a:hover {
     </div>
     <% end %>
     <% if @see  %>
-    <%= @see.size.to_i %> Student<% if @see.size.to_i > 1 %>s <% end %> found
-    <% @see.each do |user| %>
+    <% @see.map do |user| %>
     <% if user.id != @user.id %>
 
     <div class="card col-sm-3 col-xs-12">
       <div class="" style="text-align:center;">
-        <img src="images/user.png" alt="John" style="width:50%;" class="thumbnail">
+        <img src="/images/user.png" alt="John" style="width:50%;" class="thumbnail">
       </div>
       <h4><%= user.last_name %> <%= user.first_name %></h4>
-      <% us = user.course_users.all#CourseUser.find_by_user_id(user.id) %>
-      <% uss = us.last %>
-      <% if @co = Course.find_by_id(uss.course_id) %>
-        <p class="title"><%= @co.course_name %></p>
+      <% if @what == 'students' %>
+        <% us = user.course_users.all#CourseUser.find_by_user_id(user.id) %>
+        <% if us && uss = us.last %>
+        <% if @co = Course.find_by_id(uss.course_id) %>
+          <p class="title"><%= @co.course_name %></p>
+        <% end%>
         <% else %>
           <p>No course at this time</p>
+        <% end %>
+      <% else %>
+        <% us = Course.all.where(user_id: user.id) %>
+        <% if us %>
+          <% if @u = us.first %>
+            <%= @u.course_name %>
+            <% else %>
+              <p class="title">No publication yet</p>
+          <% end %>
+          <% else %>
+            <p class="title">No publication yet</p>
+        <% end %>
       <% end %>
+
       <p>LearnHt</p>
       <div style="margin: 24px 0;">
         <a href="#"><i class="fa fa-dribbble"></i></a>

@@ -164,7 +164,7 @@ $(".btn-pref .btn").click(function () {
         <div class="dropdown-menu">
 
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item"  href="/delete/user/<%= @user.id %>">Delete account</a>
+          <a class="dropdown-item" data-toggle="tab" href="#delete">Delete account</a>
         </div>
       </li>
     </ul>
@@ -172,6 +172,10 @@ $(".btn-pref .btn").click(function () {
       <style media="screen">
         .tab-pane .fa{color:rgba(255,255,255,1);}
       </style>
+      <div class="tab-pane fade show" id="delete">
+        <br>
+        <a href="/delete/user/<%= @user.id %>" class="btn btn-warning"> Click here if you realy want to delete your account</a>
+      </div>
       <div class="tab-pane fade show active" id="about">
         <br>
         <% if flash[:success] %>
