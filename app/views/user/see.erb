@@ -32,13 +32,13 @@
           <p class="title"><%= @co.course_name[0,19] %>..</p>
         <% end%>
         <% else %>
-          <p>No course at this time</p>
+          <p class="title">No course at this time</p>
         <% end %>
       <% else %>
         <% us = Course.all.where(user_id: user.id) %>
         <% if us %>
           <% if @u = us.first %>
-            <%= @u.course_name %>
+            <p class="title"><%= @u.course_name %></p>
             <% else %>
               <p class="title">No publication yet</p>
           <% end %>
