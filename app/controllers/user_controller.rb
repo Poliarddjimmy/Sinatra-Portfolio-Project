@@ -133,11 +133,11 @@ class UsersController < ApplicationController
      end
    end
 
-   post '/:what/edit/first_name' do
+   patch '/edit/user/:pseudo' do
      if Helpers.is_logged_in? session
        @user = Helpers.current_user session
        if @user.authenticate(params[:password])
-         @user.update(first_name: params[:up])
+         @user.update(first_name: params[:first_name], last_name: params[:last_name])
          flash[:success] = 'Your profil has been update'
          redirect back
        else
