@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   has_many :course_users, dependent: :destroy
   has_many :modul_users, dependent: :destroy
-  has_many :resume, dependent: :destroy
+  has_many :resume
   has_many :courses, dependent: :destroy
 
   def self.find_by_slug(slug)

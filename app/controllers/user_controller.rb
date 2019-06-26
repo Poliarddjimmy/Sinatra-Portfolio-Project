@@ -17,6 +17,19 @@ class UsersController < ApplicationController
     end
   end
 
+  get '/resume/:id' do
+    if Helpers.is_logged_in? session
+      @user = Helpers.current_user session
+      @resume = Resume.new(user_id: params[:id])
+      if @resume.save
+        redirect back
+      end
+    else
+      redirect to '/'
+    end
+  end
+
+
   post '/signup'do
     user = User.find_by(email: params[:email]) unless params[:email].empty?
     if !user
@@ -111,6 +124,7 @@ class UsersController < ApplicationController
      if Helpers.is_logged_in? session
        @user1 = Helpers.current_user session
        @user = User.find_by_pseudo(params[:pseudo])
+       @resume = Resume.find_by_user_id(@user.id)
        erb :'user/profile'
      else
        redirect to '/'
