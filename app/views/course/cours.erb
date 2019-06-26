@@ -15,10 +15,12 @@
 			<style media="screen">
 				.course_list a{color:rgba(255,255,255,1);}
 			</style>
-          <% if Course.all.size.to_i == 0 %>
+          <% if @courses.size.to_i == 0 %>
             <a>There is no course publish yet</a>
           <% end %>
-					<% c = Course.all.each do |cour| %>
+					<%
+            if @courses
+            @courses.each do |cour| %>
           <div class="card col-sm-5 col-xs-12 flex" style="float:left; margin-right:50px;">
             <h4 style="margin-top:20px;height:100px;"><%= cour.course_name %></h4>
             <p style="height:70px;"><%= cour.course_description[0,100] %>...</p>
@@ -35,7 +37,7 @@
             <p><a href="/course/<%= cour.id %>" class="button">Go to course</a></p>
           </div>
 
-					<% end %>
+					<% end end %>
 		</div>
     <div class="jumbotron col-sm-3 col-xs-12" style="float:right; border-left:rgba(255,255,255,0.1) 1px solid;">
       <% if @user.is_a_teacher.to_i == 1 || @user.is_admin.to_i == 1   %>
@@ -46,12 +48,3 @@
 
   </div>
 </div>
-
-<!--<section id="about" style="background-color:rgba(255,255,255,1);">
-	<div class="container">
-		<div class="text-intro">
-		<h2></h2>
-			<br>
-		</div>
-	</div>
-</section>-->

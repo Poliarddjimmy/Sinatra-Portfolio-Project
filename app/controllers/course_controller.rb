@@ -2,6 +2,7 @@ class CourseController < ApplicationController
   get "/course" do
     if Helpers.is_logged_in? session
       @user = Helpers.current_user session
+      @courses = Course.all
       erb :'/course/cours'
     else
       redirect to '/'
@@ -11,6 +12,7 @@ class CourseController < ApplicationController
   get "/class/course" do
     if Helpers.is_logged_in? session
       @user = Helpers.current_user session
+      @courses = Course.all
       erb :'/course/classe'
     else
       redirect to '/'

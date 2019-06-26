@@ -14,13 +14,12 @@
 			<style media="screen">
 				.course_list a {color:rgba(255,255,255,1);}
 			</style>
-      <% c = Course.all %>
-      <% if c %>
-      <% if @user.course_users.where(course_id: c.ids).all.size.to_i == 0 %>
+      <% if @courses %>
+      <% if @user.course_users.where(course_id: @courses.ids).all.size.to_i == 0 %>
         You don't subscribe to any <a href="/course">course</a>  yet <br>
         <b><a href="/course">See all courses</a></b>
       <% end %>
-			<% c.each do |cour| %>
+			<% @courses.each do |cour| %>
         <% if @user.course_users.find_by_course_id(cour.id) %>
         <div class="card col-sm-3 col-xs-12 flex" style="float:left; margin-right:50px;">
           <h4 style="margin-top:20px;height:100px;"><%= cour.course_name %></h4>
@@ -50,12 +49,3 @@
 
   </div>
 </div>
-
-<!--<section id="about" style="background-color:rgba(255,255,255,1);">
-	<div class="container">
-		<div class="text-intro">
-		<h2></h2>
-			<br>
-		</div>
-	</div>
-</section>-->
