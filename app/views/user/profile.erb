@@ -105,33 +105,50 @@
             <% if @resume.company_experience %>
             <h5 class="w3-opacity"><b><%= @resume.position %> / <%= @resume.company_experience %></b></h5>
             <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>
-              <%= @resume.start_date %> -
+              <%= @resume.start_date.strftime("%d/%m/%Y %H:%M") %> -
               <% if @resume.end_date %>
-                <%= @resume.start_date %>
+                <%= @resume.start_date.strftime("%d/%m/%Y %H:%M") %>
                 <% else %>
                 <span class="w3-tag w3-teal w3-round">Current</span>
                 <% end %>
               </h6>
-            <p>Lorem ipsum dolor sit amet. Praesentium magnam consectetur vel in deserunt aspernatur est reprehenderit sunt hic. Nulla tempora soluta ea et odio, unde doloremque repellendus iure, iste.</p>
+            <p><%= @resume.task %></p>
             <% else %>
               <p style="display:block; width:100%;">Not complete</p>
             <% end %>
           </div>
-          <div id="wbloc1" style="display:none; background-color:rgba(0,37,74, 0.5); padding:10px;">
-            <form id="efirstname"  class="" action="/edit/user/<%= @user.pseudo %>" method="post">
+          <div id="wbloc1" style="display:none; background-color:rgba(0,72,72,0.5); padding:10px;">
+            <form id=""  class="" action="/edit/user/work" method="post">
               <input id="hidden" type="hidden" name="_method" value="PATCH">
               <div>
                 <div class="form-group" style="">
-
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Last Name</label>
-                    <input type="text" name="last_name" value="<%= @user.last_name %>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="The course's name">
+                    <label for="exampleInputEmail1">Company</label>
+                    <input type="text" name="company_experience" value="<%= @resume.company_experience %>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="The name of the company">
                     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                   </div>
 
                   <div class="form-group">
-                    <label for="exampleInputEmail1">First Name</label>
-                    <input type="text" name="first_name" value="<%= @user.first_name %>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="The course's name">
+                    <label for="exampleInputEmail1">Position</label>
+                    <input type="text" name="position" value="<%= @resume.position %>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Your position here">
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Task</label>
+                    <textarea type="text" name="task" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Your task here"><%= @resume.task %></textarea>
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Start date</label>
+                    <input type="date" name="start_date" value="" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">End date</label>
+                    <input type="date" name="end_date" value="" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
                     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                   </div>
 

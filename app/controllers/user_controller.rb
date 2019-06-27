@@ -147,11 +147,12 @@ class UsersController < ApplicationController
      end
    end
 
-   patch '/edit/user/:pseudo' do
+   patch '/edit/user/work' do
      if Helpers.is_logged_in? session
        @user = Helpers.current_user session
        if @user.authenticate(params[:password])
-         @user.update(first_name: params[:first_name], last_name: params[:last_name])
+         @resume = Resume.find(@user.id)
+         @resume.update(company_experience: params[:company_experience], position: params[:position], task: params[:task], start_date:params[:start_date], end_date: params[:end_date])
          flash[:success] = 'Your profil has been update'
          redirect back
        else
