@@ -50,6 +50,27 @@ class UsersController < ApplicationController
     end
   end
 
+  post '/user/new' do
+    if Helpers.is_logged_in? session
+      user = User.find_by(email: params[:email]) unless params[:email].empty?
+      if !user
+        user = User.new params
+        if user.save
+          flash[:teacher] = 'The user has been created'
+          redirect back
+        else
+          flash[:teacher] = 'Have an error in your process'
+          redirect back
+        end
+      else
+        flash[:teacher] = 'this email exist already. Please choose another one'
+        redirect back
+      end
+    else
+      redirect to '/'
+    end
+  end
+
   get '/login' do
     if Helpers.is_logged_in? session
       redirect '/user/home'
