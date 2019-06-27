@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190627151751) do
+ActiveRecord::Schema.define(version: 20190627170626) do
 
   create_table "course_users", force: :cascade do |t|
     t.integer "user_id"
@@ -41,23 +41,34 @@ ActiveRecord::Schema.define(version: 20190627151751) do
   end
 
   create_table "resumes", force: :cascade do |t|
-    t.integer  "user_id"
-    t.string   "education_shool"
-    t.string   "education_level"
-    t.string   "education_option"
-    t.string   "skills"
-    t.string   "languages"
-    t.string   "company_experience"
-    t.string   "position"
-    t.datetime "start_date"
-    t.string   "end_date"
-    t.string   "title"
-    t.string   "task"
-    t.string   "education_start_date"
-    t.string   "education_end_date"
+    t.integer "user_id"
+    t.string  "education_shool"
+    t.string  "education_level"
+    t.string  "education_option"
+    t.string  "education_end_date"
+    t.string  "education_start_date"
+    t.string  "skills"
+    t.string  "languages"
+    t.string  "company_experience"
+    t.string  "position"
+    t.string  "start_date"
+    t.string  "end_date"
+    t.string  "task"
+    t.string  "title"
   end
 
-# Could not dump table "users" because of following NoMethodError
-#   undefined method `[]' for nil:NilClass
+  create_table "users", force: :cascade do |t|
+    t.string  "first_name"
+    t.string  "last_name"
+    t.string  "pseudo"
+    t.string  "email"
+    t.string  "password_digest"
+    t.integer "is_a_teacher"
+    t.integer "is_admin"
+    t.string  "photo"
+    t.string  "about"
+    t.string  "address"
+    t.string  "phone"
+  end
 
 end

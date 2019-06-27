@@ -182,14 +182,14 @@ class UsersController < ApplicationController
        redirect to '/'
      end
    end
-
+#, phone: params[:phone]
   patch '/edit/perso' do
     if Helpers.is_logged_in? session
       @user = Helpers.current_user session
       if @user.authenticate(params[:password])
         @resume = Resume.find(@user.id)
         @resume.update(title: params[:title], skills: params[:skills])
-        @user.update(first_name: params[:first_name], last_name: params[:last_name], address: params[:address], phone: params[:phone])
+        @user.update(first_name: params[:first_name], last_name: params[:last_name], address: params[:address])
         flash[:success] = 'Your profil has been update'
         redirect back
       else

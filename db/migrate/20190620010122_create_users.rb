@@ -9,6 +9,9 @@ class CreateUsers < ActiveRecord::Migration
       u.integer :is_a_teacher
       u.integer :is_admin
       u.string :photo
+      u.string :about
+      u.string :address
+      u.string :phone
     end
   end
 end
