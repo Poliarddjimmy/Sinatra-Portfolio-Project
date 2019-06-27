@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190626165935) do
+ActiveRecord::Schema.define(version: 20190627151751) do
 
   create_table "course_users", force: :cascade do |t|
     t.integer "user_id"
@@ -53,6 +53,8 @@ ActiveRecord::Schema.define(version: 20190626165935) do
     t.string   "end_date"
     t.string   "title"
     t.string   "task"
+    t.string   "education_start_date"
+    t.string   "education_end_date"
   end
 
 # Could not dump table "users" because of following NoMethodError
