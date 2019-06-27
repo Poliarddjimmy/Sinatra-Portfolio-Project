@@ -36,6 +36,9 @@ class UsersController < ApplicationController
       user = User.new params
 
       if user.save
+        @resume = Resume.new
+        @resume.user_id = user.id
+        @resume.save
         session[:user_id] = user.id
         redirect '/'
       else
@@ -189,11 +192,11 @@ class UsersController < ApplicationController
       if @user.authenticate(params[:password])
         @resume = Resume.find(@user.id)
         @resume.update(title: params[:title], skills: params[:skills])
-        @user.update(first_name: params[:first_name], last_name: params[:last_name], address: params[:address])
-        flash[:success] = 'Your profil has been update'
+        @user.update(first_name: params[:first_name], last_name: params[:last_name], address: params[:address], phone: params[:phone])
+        flash[:bb] = 'Your profil has been update'
         redirect back
       else
-        flash[:success] = 'the password is incorrect'
+        flash[:bb] = 'the password is incorrect'
         redirect back
       end
 

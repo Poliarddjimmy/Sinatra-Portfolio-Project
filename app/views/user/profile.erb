@@ -9,12 +9,8 @@
 </style>
 <div class="container">
   <div class="row">
-    <% if flash[:success] %>
-      <div id="success" style="color:rgba(255,255,255,1);">
-      <%= flash[:success] %>
-      </div>
-      <br>
-    <% end %>
+
+
 
 
 <div class="w3-light-gre" style="margin-top:-3%;">
@@ -38,7 +34,7 @@
                 <%= @user.last_name %> <%= @user.first_name %>
                 <% if @user.id == @user1.id %>
                 <button data-toggle="modal" data-target="#pblock" style="float:right; font-size:0.5em; background-color:rgba(255,255,255,0.000000001); border:red 0px solid;">
-                  <i class="fa fa-edit"></i>
+                  <i class="fa fa-edit"></i> 
                 </button>
                 <% end %>
               </h2>
@@ -156,7 +152,7 @@
 
                 </div>
                 <div class="modal-footer">
-                  <button type="submit" class="btn btn-primary">Add</button>
+                  <button type="submit" class="btn btn-primary">Save Change</button>
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
               </form>
@@ -188,7 +184,7 @@
             <% if @resume.company_experience %>
             <h5 class="w3-opacity"><b><%= @resume.position %> / <%= @resume.company_experience %></b></h5>
             <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>
-              <%= @resume.start_date.strftime("%d-%m-%Y") %> -
+              <%= @resume.start_date %> -
               <% if @resume.end_date != "" %>
                 <%= @resume.end_date %>
                 <% else %>
@@ -225,7 +221,7 @@
 
                   <div class="form-group">
                     <label for="exampleInputEmail1">Start date</label>
-                    <input type="date" name="start_date" value="<%= @resume.start_date.strftime("%d-%m-%Y") %>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+                    <input type="date" name="start_date" value="<%= @resume.start_date %>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
                     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                   </div>
 
