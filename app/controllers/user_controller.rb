@@ -165,6 +165,24 @@ class UsersController < ApplicationController
      end
    end
 
+   patch '/edit/user/ed' do
+     if Helpers.is_logged_in? session
+       @user = Helpers.current_user session
+       if @user.authenticate(params[:password])
+         @resume = Resume.find(@user.id)
+         @resume.update(education_shool: params[:education_shool], education_option: params[:education_option], education_start_date: params[:education_start_date], education_end_date:params[:education_end_date])
+         flash[:success] = 'Your profil has been update'
+         redirect back
+       else
+         flash[:success] = 'the password is incorrect'
+         redirect back
+       end
+
+     else
+       redirect to '/'
+     end
+   end
+
    post '/:what/edit/last_name' do
      if Helpers.is_logged_in? session
        @user = Helpers.current_user session

@@ -175,23 +175,78 @@
       </div>
 
       <div class="w3-container w3-card w3-white">
-        <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Education</h2>
+        <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>
+          Education
+          <% if @user.id == @user1.id %>
+          <button id="edit1" onclick="document.getElementById('edit1').style.display='none'; document.getElementById('ebloc1').style.display='block'; document.getElementById('ebloc').style.display='none';" class=""style="float:right; font-size:0.5em; background-color:rgba(255,255,255,0.000000001); border:red 0px solid;">
+            <i class="fa fa-edit"></i>
+          </button>
+          <% end %>
+        </h2>
         <div class="w3-container">
-          <h5 class="w3-opacity"><b>W3Schools.com</b></h5>
-          <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Forever</h6>
-          <p>Web Development! All I need to know in one place</p>
-          <hr>
-        </div>
-        <div class="w3-container">
-          <h5 class="w3-opacity"><b>London Business School</b></h5>
-          <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>2013 - 2015</h6>
-          <p>Master Degree</p>
-          <hr>
-        </div>
-        <div class="w3-container">
-          <h5 class="w3-opacity"><b>School of Coding</b></h5>
-          <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>2010 - 2013</h6>
-          <p>Bachelor Degree</p><br>
+          <% if @resume.education_shool %>
+          <div id="ebloc">
+            <h5 class="w3-opacity"><b><%= @resume.education_shool %></b></h5>
+            <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>
+              <%= @resume.education_start_date %> -
+              <% if @resume.education_end_date != "" %>
+                <%= @resume.education_end_date %>
+                <% else %>
+                <span class="w3-tag w3-teal w3-round">Forever</span>
+                <% end %>
+              </h6>
+            <p><%= @resume.education_option %></p>
+            <hr>
+          </div>
+          <% else %>
+            <p>Not yet update</p>
+          <% end %>
+
+            <div id="ebloc1" style="display:none; background-color:rgba(0,72,72,0.5); padding:10px;">
+              <form id=""  class="" action="/edit/user/ed" method="post">
+                <input id="hidden" type="hidden" name="_method" value="PATCH">
+                <div>
+                  <div class="form-group" style="">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">School name</label>
+                      <input type="text" name="education_shool" value="<%= @resume.education_shool %>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="The name of the school here">
+                      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Option</label>
+                      <input type="text" name="education_option" value="<%= @resume.education_option %>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="The option here">
+                      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Start date</label>
+                      <input type="date" name="education_start_date" value="<%= @resume.education_start_date %>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+                      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">End date</label>
+                      <input type="date" name="education_end_date" value="<%= @resume.education_end_date %>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+                      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+
+                    <b onclick="document.getElementById('next1').style.display='none';document.getElementById('last1').style.display='block';" style="display:inline-block;" id="next1" class="btn btn-info btn-sm" name="button">Next</b>
+                    <div class="" id="last1" style="display:none;">
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Enter your password to continue</label>
+                        <input type="password" name="password" value="" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="your password here">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                      </div>
+
+                      <input type="submit" class="btn btn-sm btn-success" value="Submit change">
+                      <span onclick="document.getElementById('edit1').style.display='inline-block';document.getElementById('ebloc1').style.display='none';document.getElementById('ebloc').style.display='inline-block'; document.getElementById('next1').style.display='inline-block'; document.getElementById('last1').style.display='none';" class="btn btn-sm btn-warning">Cancel</span>
+                    </div>
+                  </div>
+                  </div>
+              </form>
+            </div>
+
         </div>
       </div>
 
