@@ -16,7 +16,19 @@
                <select type="text" name="category_id" required class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="The course's name">
                  <option value="">Choose a cateory</option>
                  <% @category.each do |category| %>
-                   <%= category %>
+                   <option value="<%= category.id %>"><%= category.category_name %></option>
+                 <% end %>
+               </select>
+               <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+             </div>
+
+
+             <div class="form-group">
+               <label for="exampleInputEmail1">Class</label>
+               <select type="text" name="class_room_id" required class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="The course's name">
+                 <option value="">Choose a class</option>
+                 <% @class.each do |classe| %>
+                   <option value="<%= classe.id %>"><%= classe.cr_name %></option>
                  <% end %>
                </select>
                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>

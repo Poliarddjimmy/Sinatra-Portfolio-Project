@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :modul_users, dependent: :destroy
   has_many :resume
   has_many :courses, dependent: :destroy
+  has_many :class_users
 
   def self.find_by_slug(slug)
     self.all.find{ |user| user.slug == slug }

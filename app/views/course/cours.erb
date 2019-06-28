@@ -46,6 +46,7 @@
       <% end %>
       <% if @user.is_admin.to_i == 1  %>
         <a class="dropdown-item" data-toggle="modal" data-target="#newcategory" href="#w">new Category</a>
+        <a class="dropdown-item" data-toggle="modal" data-target="#newclass" href="#w">new Class</a>
       <% end %>
     </div>
 
@@ -74,6 +75,45 @@
               <div class="form-group">
                 <label for="last_name">Categoyi icon</label>
                 <input type="text" name="category_icon" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter the teacher's last name">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+              </div>
+
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">Add</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="modal" id="newclass">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <form id="" action="/class/new" method="post" >
+            <div class="modal-header">
+              <h5 class="modal-title">New class</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p style="color:rgba(255,255,255,1);">Filout this form to add a new class</p>
+
+
+              <div class="form-group">
+                <label for="first_name">class name</label>
+                <input type="text" name="cr_name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter the teacher's first name">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+              </div>
+
+
+              <div class="form-group">
+                <label for="last_name">Class description</label>
+                <textarea type="text" name="cr_description" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter the teacher's last name"></textarea>
                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
               </div>
 

@@ -103,6 +103,29 @@ class CourseController < ApplicationController
   end
 
 
+  post "/class/new" do
+    if Helpers.is_logged_in? session
+      @user = Helpers.current_user session
+      @class = ClassRoom.find_by_cr_name(params[:cr_name])
+      if @class
+        flash[:bon] = 'this class exist already.'
+        redirect back
+      else
+        classe = ClassRoom.new(params)
+        if classe.save
+          flash[:bon] = 'The class has been created successfully.'
+          redirect back
+        else
+          flash[:bon] = 'Error process.'
+          redirect back
+        end
+      end
+    else
+      redirect to '/'
+    end
+  end
+
+
   post "/course/new" do
     if Helpers.is_logged_in? session
 
