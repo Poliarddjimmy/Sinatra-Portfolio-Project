@@ -82,7 +82,7 @@
                 </script>
 
             </div>
-            <p><a href="/course/<%= classe.id %>" class="button">Go to class</a></p>
+            <p><a href="/<%= classe.cr_name.to_s.parameterize %>/<%= classe.id %>" class="button">Go to class</a></p>
           </div>
 
 					<% end end %>

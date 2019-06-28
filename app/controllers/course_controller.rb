@@ -9,6 +9,16 @@ class CourseController < ApplicationController
     end
   end
 
+  get "/:title/:id" do
+    if Helpers.is_logged_in? session
+      @user = Helpers.current_user session
+      @class = ClassRoom.find(params[:id])
+      erb :'/course/classe'
+    else
+      redirect to '/'
+    end
+  end
+
   get "/class/course" do
     if Helpers.is_logged_in? session
       @user = Helpers.current_user session
@@ -143,7 +153,7 @@ class CourseController < ApplicationController
   end
 
 
-  get '/course/:id' do
+  get '/show/course/:id' do
     if Helpers.is_logged_in? session
       @course = Course.find_by_id(params[:id])
       if @course
