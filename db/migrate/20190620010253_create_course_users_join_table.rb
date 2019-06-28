@@ -4,6 +4,7 @@ class CreateCourseUsersJoinTable < ActiveRecord::Migration
       m.integer :user_id
       m.integer :course_id
       m.integer :status
+      m.timestamps null: false
     end
   end
 end

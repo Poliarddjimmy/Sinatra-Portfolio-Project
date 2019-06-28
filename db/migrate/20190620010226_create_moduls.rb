@@ -6,6 +6,7 @@ class CreateModuls < ActiveRecord::Migration
       m.string :modul_description
       m.string :modul_content
       m.integer :modul_number
+      m.timestamps null: false
     end
   end
 end

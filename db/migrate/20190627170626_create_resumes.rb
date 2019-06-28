@@ -15,6 +15,7 @@ class CreateResumes < ActiveRecord::Migration
       r.string :end_date
       r.string :task
       r.string :title
+      r.timestamps null: false
     end
   end
 end

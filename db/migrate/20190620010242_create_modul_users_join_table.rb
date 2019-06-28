@@ -4,6 +4,7 @@ class CreateModulUsersJoinTable < ActiveRecord::Migration
       m.integer :user_id
       m.integer :modul_id
       m.integer :status
+      m.timestamps null: false
     end
   end
 end
