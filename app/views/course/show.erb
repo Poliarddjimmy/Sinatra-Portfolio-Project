@@ -33,7 +33,7 @@
             <% end %>
 
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" data-toggle="tab" href="#AddCourseUser">Subscription</a>
+            <a class="dropdown-item" data-toggle="tab" href="#AddCourseUser">Activation</a>
           </div>
         </li>
       </ul>
@@ -47,7 +47,7 @@
           <%  end  %>
           <% @moduser = @user.course_users.find_by_course_id(@course.id) %>
           <% if !@moduser %>
-            <p style="color:rgba(255,255,255,1);">You suppose to subscribe before you can go to the modules of this course</p>
+            <p style="color:rgba(255,255,255,1);">You suppose to activate the course before you can go to the modules of this course</p>
           <% end %>
           <ul class="list-group">
 						<%  @course.moduls.each do |modul|  %>
@@ -123,7 +123,7 @@
             <input type="hidden" name="user_id" value="<%= @user.id  %>">
             <input type="hidden" name="status" value="1">
             <button type="submit" id="gf" class="btn btn-sm btn-info gf" onclick="myFunctione()">
-                Click to subscribe to this course
+                Click to activate this course
             </button>
           </form>
 
