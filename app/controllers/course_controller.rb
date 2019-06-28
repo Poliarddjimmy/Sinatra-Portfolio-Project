@@ -1,9 +1,9 @@
 class CourseController < ApplicationController
-  get "/course" do
+  get "/classes" do
     if Helpers.is_logged_in? session
       @user = Helpers.current_user session
-      @courses = Course.all
-      erb :'/course/cours'
+      @class = ClassRoom.all
+      erb :'/course/class_room'
     else
       redirect to '/'
     end
@@ -12,7 +12,7 @@ class CourseController < ApplicationController
   get "/class/course" do
     if Helpers.is_logged_in? session
       @user = Helpers.current_user session
-      @courses = Course.all
+      @class = ClassUser.find_by_user_id(@user.id)
       erb :'/course/classe'
     else
       redirect to '/'

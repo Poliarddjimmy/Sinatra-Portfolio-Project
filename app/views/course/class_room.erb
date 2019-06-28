@@ -1,0 +1,129 @@
+
+<br>
+
+<link rel="stylesheet" href="/stylesheets/bootstrap.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<% @title = "Class" %>
+
+<div class="container">
+  <div class="row">
+    <style media="screen">
+      .card{display:flex; margin:5px;}
+    </style>
+
+		<div class="col-sm-9 col-xs-12" style="width:100%;">
+			<style media="screen">
+				.course_list a{color:rgba(255,255,255,1);}
+			</style>
+          <% if @class.size.to_i == 0 %>
+            <a>There is no class publish yet</a>
+          <% end %>
+					<%
+            if @class
+            @class.each do |classe| %>
+          <div class="card col-sm-5 col-xs-12 flex" style="float:left; margin-right:50px;">
+            <h4 style="margin-top:20px;height:100px;"><%= classe.cr_name %></h4>
+            <p style="height:70px;"><%= classe.cr_description[0,100] %>...</p>
+
+            <div class="course" style="margin: 24px 0;">
+              <style media="screen">
+                .course a{margin-right:20px; color: rgba(255,255,255,1);}
+              </style>
+              <a href="#"><i class="fa fa-graduation-cap"></i> <%= classe.courses.all.size.to_i %></a>
+
+            </div>
+            <p><a href="/course/<%= classe.id %>" class="button">Go to class</a></p>
+          </div>
+
+					<% end end %>
+		</div>
+    <div class="jumbotron col-sm-3 col-xs-12" style="float:right; border-left:rgba(255,255,255,0.1) 1px solid;">
+      <% if @user.is_a_teacher.to_i == 1 || @user.is_admin.to_i == 1   %>
+        <a class="dropdown-item" href="/course/my-courses">My courses</a>
+        <a class="dropdown-item" href="/course/new">new course</a>
+      <% end %>
+      <% if @user.is_admin.to_i == 1  %>
+        <a class="dropdown-item" data-toggle="modal" data-target="#newcategory" href="#w">new Category</a>
+        <a class="dropdown-item" data-toggle="modal" data-target="#newclass" href="#w">new Class</a>
+      <% end %>
+    </div>
+
+
+    <div class="modal" id="newcategory">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <form id="" action="/category/new" method="post" >
+            <div class="modal-header">
+              <h5 class="modal-title">New category</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p style="color:rgba(255,255,255,1);">Filout this form to add a new category</p>
+
+
+              <div class="form-group">
+                <label for="first_name">Category name</label>
+                <input type="text" name="category_name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter the teacher's first name">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+              </div>
+
+
+              <div class="form-group">
+                <label for="last_name">Categoyi icon</label>
+                <input type="text" name="category_icon" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter the teacher's last name">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+              </div>
+
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">Add</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="modal" id="newclass">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <form id="" action="/class/new" method="post" >
+            <div class="modal-header">
+              <h5 class="modal-title">New class</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p style="color:rgba(255,255,255,1);">Filout this form to add a new class</p>
+
+
+              <div class="form-group">
+                <label for="first_name">class name</label>
+                <input type="text" name="cr_name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter the teacher's first name">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+              </div>
+
+
+              <div class="form-group">
+                <label for="last_name">Class description</label>
+                <textarea type="text" name="cr_description" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter the teacher's last name"></textarea>
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+              </div>
+
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">Add</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

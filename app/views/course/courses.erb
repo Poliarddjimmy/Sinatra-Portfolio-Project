@@ -15,12 +15,12 @@
 			<style media="screen">
 				.course_list a{color:rgba(255,255,255,1);}
 			</style>
-          <% if @courses.size.to_i == 0 %>
-            <a>There is no course publish yet</a>
+          <% if @class.size.to_i == 0 %>
+            <a>There is no class publish yet</a>
           <% end %>
 					<%
-            if @courses
-            @courses.each do |cour| %>
+            if @class
+            @class.each do |cour| %>
           <div class="card col-sm-5 col-xs-12 flex" style="float:left; margin-right:50px;">
             <h4 style="margin-top:20px;height:100px;"><%= cour.course_name %></h4>
             <p style="height:70px;"><%= cour.course_description[0,100] %>...</p>
