@@ -10,8 +10,15 @@
     <style media="screen">
       .card{display:flex; margin:5px;}
     </style>
-
-		<div class="col-sm-9 col-xs-12" style="width:100%;">
+    <div class="col-sm-12 col-xs-12">
+      <% if flash[:success] %>
+        <div id="success" style="color:rgba(255,255,255,1); padding:15px;">
+        <%= flash[:success] %>
+        </div>
+        <br><br><br><br>
+      <% end %>
+    </div>
+		<div class="col-sm-10 col-xs-12" style="width:100%;">
 			<style media="screen">
 				.course_list a{color:rgba(255,255,255,1);}
 			</style>
@@ -21,15 +28,58 @@
 					<%
             if @class
             @class.each do |classe| %>
-          <div class="card col-sm-5 col-xs-12 flex" style="float:left; margin-right:50px;">
+          <div class="card col-sm-3 col-xs-12 flex" style="float:left; margin-right:50px;">
             <h4 style="margin-top:20px;height:100px;"><%= classe.cr_name %></h4>
             <p style="height:70px;"><%= classe.cr_description[0,100] %>...</p>
 
             <div class="course" style="margin: 24px 0;">
               <style media="screen">
-                .course a{margin-right:20px; color: rgba(255,255,255,1);}
+                .course a{margin-right:10px; color: rgba(255,255,255,1);}
               </style>
-              <a href="#"><i class="fa fa-graduation-cap"></i> <%= classe.courses.all.size.to_i %></a>
+              <a><i class="fa fa-book" style=""> <%= classe.courses.all.size.to_i %></i></a>
+
+              <% if @user.class_users.find_by_class_id(classe.id) %>
+                <a style="color:rgba(255,255,255,1);">
+                  <i class="fa fa-users" style=""> <%= ClassUser.all.where(class_id: classe.id).size %> </i>
+
+                </a>
+              <% else %>
+              <form id="sub" action="/add/calssuser" method="post" style="float:right;">
+                <input type="hidden" name="class_id" value="<%= classe.id %>">
+                <input type="hidden" name="user_id" value="<%= @user.id %>">
+                <button id="sub1" type="submt" class="sub1 btn btn-primary btn-sm">Subscribe to this class</button>
+              </form>
+              <% end %>
+              <script type="text/javascript">
+                $(document).ready(function() {
+                var form = $('#sub'); // contact form
+                var submit = $('#sub1');  // submit button
+                var alert = $('.alert'); // alert div for show alert message
+
+                // form submit event
+                form.on('submit', function(e) {
+                 e.preventDefault(); // prevent default form submit
+
+                 $.ajax({
+                   url: '/add/calssuser', // form action url
+                   type: 'POST', // form submit method get/post
+                   dataType: 'html', // request type html/json/xml
+                   data: form.serialize(), // serialize form data
+                   beforeSend: function() {
+                     alert.fadeOut();
+                     //submit.html('Envoyer'); // change submit button text
+                   },
+                   success: function(data) {
+                     alert.html(data).fadeIn(); // fade in response data
+                     form.trigger('reset'); // reset form
+                   },
+                   error: function(e) {
+                     console.log(e)
+                   }
+                 });
+                });
+                });
+                </script>
 
             </div>
             <p><a href="/course/<%= classe.id %>" class="button">Go to class</a></p>
@@ -37,7 +87,7 @@
 
 					<% end end %>
 		</div>
-    <div class="jumbotron col-sm-3 col-xs-12" style="float:right; border-left:rgba(255,255,255,0.1) 1px solid;">
+    <div class="jumbotron col-sm-2 col-xs-12" style="float:right; border-left:rgba(255,255,255,0.1) 1px solid;">
       <% if @user.is_a_teacher.to_i == 1 || @user.is_admin.to_i == 1   %>
         <a class="dropdown-item" href="/course/my-courses">My courses</a>
         <a class="dropdown-item" href="/course/new">new course</a>

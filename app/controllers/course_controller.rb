@@ -222,6 +222,19 @@ class CourseController < ApplicationController
     end
   end
 
+  post '/add/calssuser' do
+    @user = Helpers.current_user session
+    @clause = @user.class_users.find_by_class_id(params[:class_id])
+    if @clause
+      return 'Your are a student'
+    else
+      @clausee = ClassUser.new params
+      if @clausee.save
+        return 'Your subscription has been a success'
+      end
+    end
+  end
+
   post '/delete/:what' do
     if Helpers.is_logged_in? session
       if params[:what] == 'course'
