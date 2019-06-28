@@ -189,6 +189,13 @@
             <br><br><br><br>
           <% end %>
 
+          <% if flash[:bon] %>
+            <div id="success" style="color:rgba(255,255,255,1); padding:15px;">
+            <%= flash[:bon] %>
+            </div>
+            <br><br><br><br>
+          <% end %>
+
           <span class="alert"></span>
         </div>
       </div>

@@ -73,7 +73,30 @@ class CourseController < ApplicationController
   get "/course/new" do
     if Helpers.is_logged_in? session
       @user = Helpers.current_user session
+      @category = Category.all
       erb :'/course/new'
+    else
+      redirect to '/'
+    end
+  end
+
+  post "/category/new" do
+    if Helpers.is_logged_in? session
+      @user = Helpers.current_user session
+      @category = Category.find_by_category_name(params[:category_name])
+      if @category
+        flash[:bon] = 'this category exist already.'
+        redirect back
+      else
+        category = Category.new(params)
+        if category.save
+          flash[:bon] = 'The category has been created successfully.'
+          redirect back
+        else
+          flash[:bon] = 'Error process.'
+          redirect back
+        end
+      end
     else
       redirect to '/'
     end
