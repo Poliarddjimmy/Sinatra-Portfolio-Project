@@ -27,14 +27,20 @@
       <div class="w3-white w3-text-grey w3-card-4" >
         <div>
           <div class="w3-display-container">
-            <img src="/images/user.png" style="width:100%" alt="Avatar">
+            <div class="containere">
+              <img src="/images/user.png" style="width:100%" alt="<%= @user.pseudo %>">
+              <div class="overlay">
+                <div class="text">Hello World</div>
+              </div>
+            </div>
+
             <br><br><br>
             <div class="w3-display-bottomleft w3-container w3-text-black" style="width:100%;">
               <h2 style="text-align:centerr;">
                 <%= @user.last_name %> <%= @user.first_name %>
                 <% if @user.id == @user1.id %>
                 <button data-toggle="modal" data-target="#pblock" style="float:right; font-size:0.5em; background-color:rgba(255,255,255,0.000000001); border:red 0px solid;">
-                  <i class="fa fa-edit"></i> 
+                  <i class="fa fa-edit"></i>
                 </button>
                 <% end %>
               </h2>
