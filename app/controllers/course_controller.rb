@@ -74,6 +74,7 @@ class CourseController < ApplicationController
     if Helpers.is_logged_in? session
       @user = Helpers.current_user session
       @category = Category.all
+      @class = ClassRoom.all
       erb :'/course/new'
     else
       redirect to '/'
@@ -129,7 +130,8 @@ class CourseController < ApplicationController
   post "/course/new" do
     if Helpers.is_logged_in? session
 
-      cour = Helpers.current_user(session).courses.create(:course_name=> params[:course_name], :course_description => params[:course_description])
+      cour = Helpers.current_user(session).courses.create(params)
+      #:class_id params[:class_id], :,:course_name=> params[:course_name], :course_description => params[:course_description]
       if cour.save
         redirect to "/course/#{cour.id}"
       else
