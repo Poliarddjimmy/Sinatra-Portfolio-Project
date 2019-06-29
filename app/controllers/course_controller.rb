@@ -13,7 +13,6 @@ class CourseController < ApplicationController
     if Helpers.is_logged_in? session
       @user = Helpers.current_user session
       @pam = ClassUser.find_by_user_id(@user.id)
-      @class = ClassRoom.all.where(id: @pam.class_id)
       erb :'/course/my_class'
     else
       redirect to '/'
@@ -268,9 +267,12 @@ class CourseController < ApplicationController
       elsif params[:what] == 'module'
         @modul = ModulUser.all
         if @modul.delete_all
-          #flash[:teacher] = 'All module\'s class has been clear'
-          #redirect back
           return 'All module\'s class has been clear'
+        end
+      elsif params[:what] == 'class'
+        @class = ClassUser.all
+        if @class.delete_all
+          return 'All  class has been clear'
         end
       end
     else

@@ -9,7 +9,7 @@
 <section class="col-sm-12 col-xs-12 bg-primary" style="margin-top:-5%; min-height:50px;">
   <div class="container">
     <div class="row">
-      <h1 style="color:rgba(255,255,255,1);">All classes</h1>
+      <h1 style="color:rgba(255,255,255,1);">My classes</h1>
     </div>
   </div>
 </section>
@@ -30,9 +30,8 @@
 			<style media="screen">
 				.course_list a, .card p, .card h4, .card ,fa {color:rgba(255,255,255,1);}
 			</style>
-          <% if @class.size.to_i == 0 %>
-            <a>There is no class publish yet</a>
-          <% end %>
+      <% if @pam %>
+      <% @class = ClassRoom.all.where(id: @pam.class_id)  %>
 					<%
             if @class
             @class.each do |classe| %>
@@ -55,8 +54,10 @@
             </div>
             <p><a href="/<%= classe.cr_name.to_s.parameterize %>/<%= classe.id %>/show" class="button">Go to class</a></p>
           </div>
-
-					<% end end %>
+          <% end end %>
+          <% else %>
+            <a>You don't subscribe to any class yet</a>
+					<% end %>
 		</div>
     <style media="screen">
       .lala a{color:rgba(255,255,255,1); margin-bottom:1px}

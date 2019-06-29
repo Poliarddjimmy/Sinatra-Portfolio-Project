@@ -267,6 +267,12 @@
                   </form>
                 </p>
                 <div class="dropdown-divider" style="margin-bottom:20px;"></div>
+                <form id="deleteclass" action="/delete/class" method="post" style=" display:block;">
+                  Click here to clear all class
+                  <button id="deleteclass_submit" class="btn btn-primary btn-sm" style="float:right; margin-top:-7px;">Clear class</button>
+                </form>
+              </p>
+              <div class="dropdown-divider" style="margin-bottom:20px;"></div>
                 <p >
                   <form id="deletemodul" action="/delete/module" method="post" style="display:block;">
                     Click here to clear all Module's class
@@ -275,8 +281,40 @@
 
                   <script type="text/javascript">
                     $(document).ready(function() {
+                    var form = $('#deleteclass'); // contact form
+                    var submit = $('#deleteclass_submit');  // submit button
+                    var alert = $('.alert'); // alert div for show alert message
+
+                    // form submit event
+                    form.on('submit', function(e) {
+                     e.preventDefault(); // prevent default form submit
+
+                     $.ajax({
+                       url: '/delete/class', // form action url
+                       type: 'POST', // form submit method get/post
+                       dataType: 'html', // request type html/json/xml
+                       data: form.serialize(), // serialize form data
+                       beforeSend: function() {
+                         alert.fadeOut();
+                         //submit.html('Envoyer'); // change submit button text
+                       },
+                       success: function(data) {
+                         alert.html(data).fadeIn(); // fade in response data
+                         form.trigger('reset'); // reset form
+                       },
+                       error: function(e) {
+                         console.log(e)
+                       }
+                     });
+                    });
+                    });
+                    </script>
+
+
+                  <script type="text/javascript">
+                    $(document).ready(function() {
                     var form = $('#deletemodul'); // contact form
-                    var submit = $('#deletemodul_submi');  // submit button
+                    var submit = $('#deletemodul_submit');  // submit button
                     var alert = $('.alert'); // alert div for show alert message
 
                     // form submit event
