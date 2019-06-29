@@ -386,6 +386,7 @@
   <br>
   <h3>Modul complete</h3>
   <p style="color:rgba(255,255,255,1);">
+  <ul class="list-group">
     <%
       @mo = @user.modul_users.all
 
@@ -393,8 +394,13 @@
         @mo.each do |modu|
           @m = Modul.find_by_id(modu.modul_id)
     %>
-      <%= @m.modul_title %>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <a href="<%= @m.course_id %>/<%= @m.modul_title.to_s.parameterize %>/<%= @m.modul_number %>">
+        <%= @m.modul_title %>
+      </a>
+    </li>
     <% end end %>
+  </ul>
   </p>
 </div>
 </div>
