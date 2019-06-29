@@ -3,9 +3,40 @@
 
 <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" />
 <% @title = "Course" %>
+<section class="col-sm-12 col-xs-12 bg-primary" style="margin-top:-5%; min-height:50px;">
+  <div class="container">
+    <div class="row">
+      <h4 style="color:rgba(255,255,255,1); margin-top:10px; display:block; width:100%;">My courses</h4>
 
+
+
+      <div class="" style="display:block;">
+        <ul class="nav nav-tabs" >
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#description">List</a>
+          </li>
+          <li class="nav-item">
+          </li>
+          <% if @user.is_admin == 1 %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Option</a>
+            <div class="dropdown-menu">
+              <% if @user.is_a_teacher.to_i == 1 || @user.is_admin.to_i == 1   %>
+                <a class="dropdown-item" href="/course/new">new course</a>
+              <% end %>
+              <!-- <div class="dropdown-divider"></div>
+              <a class="dropdown-item" data-toggle="tab" href="#AddCourseUser">Activation</a> -->
+            </div>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
 <div class="container">
   <div class="row">
+
     <style media="screen">
       .card{display:flex; margin:5px;}
     </style>
@@ -19,13 +50,14 @@
       </div>
     -->
 
-		<div class="col-sm-9 col-xs-12" style="width:100%;">
+		<div class="col-sm-12 col-xs-12" style="width:100%;">
+      <br><br>
 			<style media="screen">
-				.course_list a{color:rgba(255,255,255,1);}
+				.course_list a, .card p, .card h4, .card ,fa {color:rgba(255,255,255,1);}
 			</style>
   			<% if @course %>
           <% @course.each do |cour| %>
-          <div class="card col-sm-5 col-xs-12 flex" style="float:left; margin-right:50px;">
+          <div class="card col-sm-3 col-xs-12 flex" style="float:left; margin-right:50px;">
             <h4 style="margin-top:20px;height:100px;"><%= cour.course_name %></h4>
             <p style="height:70px;"><%= cour.course_description[0,100] %>...</p>
             <p class="title"> <%= 'by'.capitalize %>: <a><%= cour.user.last_name %> <%= cour.user.last_name %></a></p>
@@ -49,11 +81,6 @@
 				<% end %>
 
 		</div>
-    <div class="jumbotron col-sm-3 col-xs-12" style="float:right; border-left:rgba(255,255,255,0.1) 1px solid;">
-      <% if @user.is_a_teacher.to_i == 1 || @user.is_admin.to_i == 1   %>
-        <a class="dropdown-item" href="/course/new">new course</a>
-      <% end %>
-    </div>
 
   </div>
 </div>
