@@ -69,6 +69,26 @@ class CourseController < ApplicationController
     end
   end
 
+  patch '/edit/class/:id' do
+    if Helpers.is_logged_in? session
+      classe = Class.find_by_id(params[:id])
+      if classe
+        if classe.update(cr_name: params[:cr_name], cr_description: params[:cr_description])
+          flash[:success] = 'The class has been update successfully'
+          redirect back
+        else
+          flash[:success] = 'The class hasn\'t been update'
+          redirect back
+        end
+      else
+        flash[:success] = 'Error process'
+        redirect back
+      end
+    else
+      redirect to '/login'
+    end
+  end
+
   patch '/edit/module/:id' do
     if Helpers.is_logged_in? session
       modul = Modul.find_by_id(params[:id])

@@ -4,6 +4,40 @@
 <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" />
 <% @title = "My class" %>
 
+<div class="modal" id="editclasse">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form id="" action="/edit/class/<%= @class.id %>" method="post" >
+        <div class="modal-header">
+          <h5 class="modal-title">Edit this class</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p style="color:rgba(255,255,255,1);">Filout this form to add a new user</p>
+             <input id="hidden" type="hidden" name="_method" value="PATCH">
+             <div class="form-group">
+               <label for="exampleInputEmail1">Name of the class</label>
+               <input type="text" name="cr_name" value="<%= @class.cr_name %>" class="form-control" aria-describedby="emailHelp" placeholder="Add the module content here">
+               <small id="" class="form-text text-muted">We'll never share your email with anyone else.</small>
+             </div>
+
+             <div class="form-group">
+               <label for="exampleInputEmail1">Description of the calss</label>
+               <textarea type="text" name="cr_description" class="form-control" id="summernote" aria-describedby="emailHelp" placeholder="The course's name" style="resize: vertical; min-height:50px;"><%= @class.cr_description%></textarea>
+               <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+             </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Save change</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
 <section class="col-sm-12 col-xs-12 bg-primary" style="margin-top:-5%; min-height:50px;">
   <div class="container">
     <div class="row">
@@ -21,19 +55,16 @@
           </li>
           <li class="nav-item">
           </li>
+          <% if @user.is_admin == 1 %>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Option</a>
             <div class="dropdown-menu">
-              <% if @user.is_admin == 1 %>
-                <a class="dropdown-item" data-toggle="tab" href="#new_modul">New module</a>
-                <a class="dropdown-item" data-toggle="tab" href="#course_edit">Edit this course</a>
-                <a class="dropdown-item"  href="/course/delete/ %>">Delete this course</a>
-              <% end %>
-
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" data-toggle="tab" href="#AddCourseUser">Activation</a>
+              <a class="dropdown-item" data-toggle="modal" data-target="#editclasse" href="#">Edit this class</a>
+              <!-- <div class="dropdown-divider"></div>
+              <a class="dropdown-item" data-toggle="tab" href="#AddCourseUser">Activation</a> -->
             </div>
           </li>
+          <% end %>
         </ul>
       </div>
     </div>
@@ -48,7 +79,7 @@
     </style>
 
 
-		<div id="myTabContent" class="tab-content" style="">
+		<div id="myTabContent" class="tab-content">
       <br>
       <div class="tab-pane fade show active" id="description">
         <br>
@@ -80,6 +111,9 @@
           <% else %>
             <p>There is no course in this class</p>
           <% end %>
+      </div>
+      <div class="tab-pane fade show" id="editclasse">
+        <br>
       </div>
       <br>
 		</div>
