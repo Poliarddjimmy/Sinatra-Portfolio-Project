@@ -52,7 +52,12 @@
   <div class="row">
 
 
-
+  <% if flash[:profil] %>
+    <div id="success">
+    <%= flash[:profil] %>
+    </div>
+    <br>
+  <% end %>
 
 <div id="myTabContent" class="tab-content w3-light-gre" style="">
 

@@ -127,11 +127,11 @@ class UsersController < ApplicationController
         @user = Helpers.current_user session
         if @user.authenticate(params[:password])
           if @user.update(password: params[:pwd])
-            flash[:success] = 'Your password has been change'
+            flash[:profil] = 'Your password has been change'
             redirect back
           end
         else
-          flash[:success] = 'The old password is incorrect'
+          flash[:profil] = 'The old password is incorrect'
           redirect back
         end
 
@@ -173,10 +173,10 @@ class UsersController < ApplicationController
        if @user.authenticate(params[:password])
          @resume = Resume.find(@user.id)
          @resume.update(company_experience: params[:company_experience], position: params[:position], task: params[:task], start_date:params[:start_date], end_date: params[:end_date])
-         flash[:success] = 'Your profil has been update'
+         flash[:profil] = 'Your profil has been update'
          redirect back
        else
-         flash[:success] = 'the password is incorrect'
+         flash[:profil] = 'the password is incorrect'
          redirect back
        end
 
@@ -191,10 +191,10 @@ class UsersController < ApplicationController
        if @user.authenticate(params[:password])
          @resume = Resume.find(@user.id)
          @resume.update(education_shool: params[:education_shool], education_option: params[:education_option], education_start_date: params[:education_start_date], education_end_date:params[:education_end_date])
-         flash[:success] = 'Your profil has been update'
+         flash[:profil] = 'Your profil has been update'
          redirect back
        else
-         flash[:success] = 'the password is incorrect'
+         flash[:profil] = 'the password is incorrect'
          redirect back
        end
 
@@ -210,10 +210,10 @@ class UsersController < ApplicationController
         @resume = Resume.find(@user.id)
         @resume.update(title: params[:title], skills: params[:skills])
         @user.update(first_name: params[:first_name], last_name: params[:last_name], address: params[:address], phone: params[:phone])
-        flash[:bb] = 'Your profil has been update'
+        flash[:profil] = 'Your profil has been update'
         redirect back
       else
-        flash[:bb] = 'the password is incorrect'
+        flash[:profil] = 'the password is incorrect'
         redirect back
       end
 
