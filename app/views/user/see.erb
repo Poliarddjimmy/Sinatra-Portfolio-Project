@@ -1,70 +1,121 @@
-<% @title = @what %>
+<% @title = 'Users' %>
 <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" />
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+<section class="col-sm-12 col-xs-12 bg-primary" style="margin-top:-4%; min-height:50px;">
+  <div class="container">
+    <div class="row">
+      <h4 style="color:rgba(255,255,255,1); margin-top:10px; display:block; width:100%;">User's list</h4>
+
+
+
+      <div class="" style="display:block;">
+        <ul class="nav nav-tabs" >
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#student">Student</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#teacher">Teacher</a>
+          </li>
+          <% if @user.is_admin == 1 %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Option</a>
+            <div class="dropdown-menu">
+              <% if @user.is_admin.to_i == 1   %>
+                <a class="dropdown-item" data-toggle="modal" data-target="#myModal1"  href="#">New user</a>
+                <a class="dropdown-item" data-toggle="modal" data-target="#asteacher"  href="#">Change status</a>
+              <% end %>
+            </div>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
 <div class="container">
   <div class="row">
-    <div class="col-sm-12 col-xs-12">
-      <h2 style="text-align:">List of <%= @what %></h2>
-    </div>
-
+  <style media="screen">
+    .course_list a, .card p, .card h4, .card ,fa {color:rgba(255,255,255,1);}
+  </style>
     <br>
-    <% if !@see %>
+    <% if @see.size.to_i == 1 %>
     <div class="col-sm-12 col-xs-12">
-      No student for now
+      There is no other user
     </div>
     <% end %>
-    <div class=" col-sm-10 col-xs-12">
-    <% if @see  %>
-    <% @see.map do |user| %>
-    <% if user.id != @user.id %>
+    <div id="myTabContent" class="tab-content col-sm-10 col-xs-12">
+      <div class="tab-pane fade show active" id="student">
+      <% if @see  %>
+      <% @see.map do |user| %>
 
-    <div class="card col-sm-3 col-xs-12" style="float:left; margin:10px 25px 0;">
-      <div class="" style="text-align:center;">
-        <img src="/images/user.png" alt="John" style="width:50%;" class="thumbnail">
-      </div>
-      <h4 style="margin-top:20px; height:70px;"><%= user.last_name %> <%= user.first_name %></h4>
-      <% if @what == 'students' %>
-        <% us = user.course_users.all#CourseUser.find_by_user_id(user.id) %>
-        <% if us && uss = us.last %>
-        <% if @co = Course.find_by_id(uss.course_id) %>
-          <p class="title"><%= @co.course_name[0,19] %>..</p>
-        <% end%>
-        <% else %>
-          <p class="title">No course at this time</p>
-        <% end %>
-      <% else %>
-        <% us = Course.all.where(user_id: user.id) %>
-        <% if us %>
-          <% if @u = us.first %>
-            <p class="title"><%= @u.course_name %></p>
-            <% else %>
-              <p class="title">No publication yet</p>
-          <% end %>
+      <% if user.is_a_teacher == 0 %>
+
+      <div class="card col-sm-3 col-xs-12" style="float:left; margin:10px 25px 0;">
+        <div class="" style="text-align:center;">
+          <img src="/images/user.png" alt="John" style="width:50%;" class="thumbnail">
+        </div>
+        <h4 style="margin-top:20px; height:70px;"><%= user.last_name %> <%= user.first_name %></h4>
+
+          <% us = user.course_users.all#CourseUser.find_by_user_id(user.id) %>
+          <% if us && uss = us.last %>
+          <% if @co = Course.find_by_id(uss.course_id) %>
+            <p class="title"><%= @co.course_name[0,19] %>..</p>
+          <% end%>
           <% else %>
-            <p class="title">No publication yet</p>
-        <% end %>
-      <% end %>
+            <p class="title">No course at this time</p>
+          <% end %>
 
-      <p>LearnHt</p>
-      <div style="margin: 24px 0;">
-        <a href="#"><i class="fa fa-dribbble"></i></a>
-        <a href="#"><i class="fa fa-twitter"></i></a>
-        <a href="#"><i class="fa fa-linkedin"></i></a>
-        <a href="#"><i class="fa fa-facebook"></i></a>
+
+        <p>LearnHt</p>
+        <div style="margin: 24px 0;">
+          <a href="#"><i class="fa fa-dribbble"></i></a>
+          <a href="#"><i class="fa fa-twitter"></i></a>
+          <a href="#"><i class="fa fa-linkedin"></i></a>
+          <a href="#"><i class="fa fa-facebook"></i></a>
+        </div>
+        <p><a href="/profile/user=<%= user.pseudo %>" class="button">see profile</a></p>
       </div>
-      <p><a href="/profile/user=<%= user.pseudo %>" class="button">see profile</a></p>
-    </div>
-    <% end end end %>
-  </div>
+      <% end end end %>
+   </div>
 
-  <div class="jumbotron col-sm-2 col-xs-12" style="float:right; border-left:rgba(255,255,255,0.1) 1px solid;">
-    <% if @user.is_admin.to_i == 1   %>
-      <a class="dropdown-item btn btn-info btn-sm " data-toggle="modal" data-target="#myModal1" style="text-align:center;" href="#">New user</a>
-      <div class="dropdown-divider"></div>
-      <a class="dropdown-item btn btn-warning btn-sm button" data-toggle="modal" data-target="#asteacher" style="text-align:center;" href="#">Change status</a>
-    <% end %>
+
+
+   <div class="tab-pane fade show" id="teacher">
+   <% if @see  %>
+   <% @see.map do |user| %>
+
+   <% if user.is_a_teacher == 1 %>
+
+   <div class="card col-sm-3 col-xs-12" style="float:left; margin:10px 25px 0;">
+     <div class="" style="text-align:center;">
+       <img src="/images/user.png" alt="John" style="width:50%;" class="thumbnail">
+     </div>
+     <h4 style="margin-top:20px; height:70px;"><%= user.last_name %> <%= user.first_name %></h4>
+
+       <% us = Course.all.where(user_id: user.id) %>
+       <% if us %>
+         <% if @u = us.first %>
+           <p class="title"><%= @u.course_name %></p>
+           <% else %>
+             <p class="title">No publication yet</p>
+         <% end %>
+         <% else %>
+           <p class="title">No publication yet</p>
+       <% end %>
+
+     <p>LearnHt</p>
+     <div style="margin: 24px 0;">
+       <a href="#"><i class="fa fa-dribbble"></i></a>
+       <a href="#"><i class="fa fa-twitter"></i></a>
+       <a href="#"><i class="fa fa-linkedin"></i></a>
+       <a href="#"><i class="fa fa-facebook"></i></a>
+     </div>
+     <p><a href="/profile/user=<%= user.pseudo %>" class="button">see profile</a></p>
+   </div>
+   <% end end end %>
+</div>
   </div>
 
 

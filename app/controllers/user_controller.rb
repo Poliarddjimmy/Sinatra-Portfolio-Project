@@ -88,17 +88,11 @@ class UsersController < ApplicationController
     end
   end
 
-  get '/see/:what' do
+  get '/see/users' do
     if Helpers.is_logged_in? session
-      @what = params[:what]
       @user = Helpers.current_user session
-      if params[:what] == 'students'
-        @see = User.all.where(is_a_teacher: 0)
-        erb :'user/see'
-      else
-        @see = User.all.where(is_a_teacher: 1)
-        erb :'user/see'
-      end
+      @see = User.all
+      erb :'user/see'
     else
       redirect to '/'
     end
