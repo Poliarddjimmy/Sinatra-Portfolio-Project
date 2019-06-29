@@ -236,7 +236,7 @@ class CourseController < ApplicationController
     else
       @corus = CourseUser.new params
       if @corus.save
-        flash[:success] = 'Your subscription has been a success'
+        flash[:success] = 'This course is active now'
         redirect back
       end
     end
@@ -246,11 +246,13 @@ class CourseController < ApplicationController
     @user = Helpers.current_user session
     @clause = @user.class_users.find_by_class_id(params[:class_id])
     if @clause
-      return 'Your are a student'
+      flash[:success] = 'Your are a student'
+      redirect back
     else
       @clausee = ClassUser.new params
       if @clausee.save
-        return 'Your subscription has been a success'
+        flash[:success] = 'Your subscription has been a success'
+        redirect back
       end
     end
   end

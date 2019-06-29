@@ -15,17 +15,16 @@
 </section>
 <div class="container">
   <div class="row">
+    <div style="display:block;">
+      <% if flash[:success] %>
+        <b id="success">
+        <%= flash[:success] %>
+        </b>
+      <% end %>
+    </div>
     <style media="screen">
       .card{display:flex; margin:5px;}
     </style>
-    <div class="col-sm-12 col-xs-12">
-      <% if flash[:success] %>
-        <div id="success" style="color:rgba(255,255,255,1); padding:15px;">
-        <%= flash[:success] %>
-        </div>
-        <br><br><br><br>
-      <% end %>
-    </div>
 		<div class="col-sm-10 col-xs-12" style="width:100%;">
 			<style media="screen">
 				.course_list a, .card p, .card h4, .card ,fa {color:rgba(255,255,255,1);}
@@ -58,36 +57,6 @@
                 <button id="sub1" type="submt" class="sub1 btn btn-primary btn-sm">Subscribe to this class</button>
               </form>
               <% end %>
-              <script type="text/javascript">
-                $(document).ready(function() {
-                var form = $('#sub'); // contact form
-                var submit = $('#sub1');  // submit button
-                var alert = $('.alert'); // alert div for show alert message
-
-                // form submit event
-                form.on('submit', function(e) {
-                 e.preventDefault(); // prevent default form submit
-
-                 $.ajax({
-                   url: '/add/calssuser', // form action url
-                   type: 'POST', // form submit method get/post
-                   dataType: 'html', // request type html/json/xml
-                   data: form.serialize(), // serialize form data
-                   beforeSend: function() {
-                     alert.fadeOut();
-                     //submit.html('Envoyer'); // change submit button text
-                   },
-                   success: function(data) {
-                     alert.html(data).fadeIn(); // fade in response data
-                     form.trigger('reset'); // reset form
-                   },
-                   error: function(e) {
-                     console.log(e)
-                   }
-                 });
-                });
-                });
-                </script>
 
             </div>
             <p><a href="/<%= classe.cr_name.to_s.parameterize %>/<%= classe.id %>/show" class="button">Go to class</a></p>

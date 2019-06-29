@@ -121,7 +121,7 @@
   <body class="bg-ligh">
     <div class="wrapper">
       <% if Helpers.is_logged_in?(session) %>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light" id="banner">
+      <nav class="navbar navbar-expand-lg navbar-light bg-lighte" id="banner">
         <div class="container">
         <!-- Brand -->
         <a class="navbar-brand" href="/"><span>Logo</span> Here</a>
@@ -261,22 +261,19 @@
                   .modal-body p{color: rgba(255,255,255,1)}
                 </style>
                 <p >
-                  <form id="deletecourse" action="/delete/course" method="post" style=" display:block;">
-                    Click here to clear all Course's class
-                    <button id="deletecourse_submit" class="btn btn-primary btn-sm" style="float:right; margin-top:-7px;">Clear course's class</button>
+                  <form id="deletecourse" action="/delete/course" method="post" style=" display:block; width:100%;">
+                    <button id="deletecourse_submit" class="btn btn-primary btn-sm" style="display:block; width:100%;">Click here to clear all Course's class</button>
                   </form>
                 </p>
-                <div class="dropdown-divider" style="margin-bottom:20px;"></div>
-                <form id="deleteclass" action="/delete/class" method="post" style=" display:block;">
-                  Click here to clear all class
-                  <button id="deleteclass_submit" class="btn btn-primary btn-sm" style="float:right; margin-top:-7px;">Clear class</button>
+                <div class="dropdown-divider" style=""></div>
+                <form id="deleteclass" action="/delete/class" method="post" style=" display:block; width:100%;">
+                  <button id="deleteclass_submit" class="btn btn-warning btn-sm" style="display:block; width:100%;">Click here to clear all class</button>
                 </form>
               </p>
-              <div class="dropdown-divider" style="margin-bottom:20px;"></div>
+              <div class="dropdown-divider" style=""></div>
                 <p >
-                  <form id="deletemodul" action="/delete/module" method="post" style="display:block;">
-                    Click here to clear all Module's class
-                    <button id="deletemodul_submit" type="submit" class="btn btn-info btn-sm" style="float:right; margin-top:-7px;">Clear module's class</button>
+                  <form id="deletemodul" action="/delete/module" method="post" style="display:block; width:100%;">
+                    <button id="deletemodul_submit" type="submit" class="btn btn-info btn-sm" style="display:block; width:100%;">Click here to clear all Module's class</button>
                   </form>
 
                   <script type="text/javascript">
