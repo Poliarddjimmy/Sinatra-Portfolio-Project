@@ -17,7 +17,9 @@
       </h4>
 
 
-
+      <style media="screen">
+        .nav-link{color:rgba(255,255,255,1);}
+      </style>
       <div class="" style="display:block;">
         <ul class="nav nav-tabs" >
           <li class="nav-item">
@@ -241,7 +243,7 @@
               <p style="display:block; width:100%;">Not complete</p>
             <% end %>
           </div>
-          <div id="wbloc1" style="display:none; background-color:rgba(0,72,72,0.5); padding:10px;">
+          <div id="wbloc1" style="display:none;  padding:10px;">
             <form id=""  class="" action="/edit/user/work" method="post">
               <input id="hidden" type="hidden" name="_method" value="PATCH">
               <div>
@@ -326,7 +328,7 @@
             <p>Not yet update</p>
           <% end %>
 
-            <div id="ebloc1" style="display:none; background-color:rgba(0,72,72,0.5); padding:10px;">
+            <div id="ebloc1" style="display:none;  padding:10px;">
               <form id=""  class="" action="/edit/user/ed" method="post">
                 <input id="hidden" type="hidden" name="_method" value="PATCH">
                 <div>
@@ -395,7 +397,7 @@
           @m = Modul.find_by_id(modu.modul_id)
     %>
     <li class="list-group-item d-flex justify-content-between align-items-center">
-      <a href="<%= @m.course_id %>/<%= @m.modul_title.to_s.parameterize %>/<%= @m.modul_number %>">
+      <a href="/show/course/<%= @m.course_id %>/<%= @m.modul_title.to_s.parameterize %>/<%= @m.modul_number %>">
         <%= @m.modul_title %>
       </a>
     </li>
