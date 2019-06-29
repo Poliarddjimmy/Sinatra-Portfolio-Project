@@ -77,7 +77,12 @@
     <style media="screen">
       .card{display:flex; margin:5px;}
     </style>
-
+    <% if flash[:success] %>
+    <br>
+      <div id="success">
+      <%= flash[:success] %>
+      </div>
+    <% end %>
 
 		<div id="myTabContent" class="tab-content">
       <br>

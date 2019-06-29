@@ -71,7 +71,7 @@ class CourseController < ApplicationController
 
   patch '/edit/class/:id' do
     if Helpers.is_logged_in? session
-      classe = Class.find_by_id(params[:id])
+      classe = ClassRoom.find(params[:id])
       if classe
         if classe.update(cr_name: params[:cr_name], cr_description: params[:cr_description])
           flash[:success] = 'The class has been update successfully'
