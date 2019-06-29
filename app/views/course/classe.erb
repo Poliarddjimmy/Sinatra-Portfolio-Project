@@ -78,16 +78,24 @@
       .card{display:flex; margin:5px;}
     </style>
     <% if flash[:success] %>
-    <br>
-      <div id="success">
-      <%= flash[:success] %>
-      </div>
+    <div class="alert alert-dismissible alert-success" style="display:block; margin-top:20px; ">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <p class="mb-0" style="color:rgba(255,255,255,1);"><%= flash[:success] %></p>
+    </div>
+    <% end %>
+
+
+    <% if flash[:bad] %>
+    <div class="alert alert-dismissible alert-danger" style="display:block; margin-top:20px; ">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <p class="mb-0" style="color:rgba(255,255,255,1);"><%= flash[:bad] %></p>
+      <br>
+    </div>
     <% end %>
 
 		<div id="myTabContent" class="tab-content">
       <br>
       <div class="tab-pane fade show active" id="description">
-        <br>
         <p ><%= @class.cr_description %></p>
       </div>
       <div class="tab-pane fade show" id="courses">

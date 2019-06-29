@@ -77,11 +77,11 @@ class CourseController < ApplicationController
           flash[:success] = 'The class has been update successfully'
           redirect back
         else
-          flash[:success] = 'The class hasn\'t been update'
+          flash[:bad] = 'The class hasn\'t been update'
           redirect back
         end
       else
-        flash[:success] = 'Error process'
+        flash[:bad] = 'Error process'
         redirect back
       end
     else
