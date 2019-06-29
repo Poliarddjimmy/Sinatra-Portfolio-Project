@@ -56,6 +56,8 @@ class UsersController < ApplicationController
       if !user
         user = User.new params
         if user.save
+          @resume = Resume.new(user_id: user.id)
+          @resume.save
           flash[:teacher] = 'The user has been created'
           redirect back
         else
