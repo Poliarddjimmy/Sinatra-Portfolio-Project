@@ -9,7 +9,7 @@ class CourseController < ApplicationController
     end
   end
 
-  get "/:title/:id" do
+  get "/:title/:id/show" do
     if Helpers.is_logged_in? session
       @user = Helpers.current_user session
       @class = ClassRoom.find(params[:id])

@@ -1,10 +1,18 @@
 
 <br>
 
-<link rel="stylesheet" href="/stylesheets/bootstrap.min.css" />
+<link rel="stylesheet" href="/stylesheets/bootstrapo.min.css" />
+<link rel="stylesheet" href="/stylesheets/boot.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <% @title = "Class" %>
 
+<section class="col-sm-12 col-xs-12 bg-dark" style="margin-top:-5%; min-height:50px;">
+  <div class="container">
+    <div class="row">
+      <h1 style="color:rgba(255,255,255,1);">All classes</h1>
+    </div>
+  </div>
+</section>
 <div class="container">
   <div class="row">
     <style media="screen">
@@ -82,19 +90,23 @@
                 </script>
 
             </div>
-            <p><a href="/<%= classe.cr_name.to_s.parameterize %>/<%= classe.id %>" class="button">Go to class</a></p>
+            <p><a href="/<%= classe.cr_name.to_s.parameterize %>/<%= classe.id %>/show" class="button">Go to class</a></p>
           </div>
 
 					<% end end %>
 		</div>
-    <div class="jumbotron col-sm-2 col-xs-12" style="float:right; border-left:rgba(255,255,255,0.1) 1px solid;">
+    <style media="screen">
+      .lala a{color:rgba(255,255,255,1); margin-bottom:1px}
+      .lala {margin-top: 1%;}
+    </style>
+    <div class="col-sm-2 col-xs-12 lala">
       <% if @user.is_a_teacher.to_i == 1 || @user.is_admin.to_i == 1   %>
-        <a class="dropdown-item" href="/course/my-courses">My courses</a>
-        <a class="dropdown-item" href="/course/new">new course</a>
+        <a class="dropdown-item bg-dark" href="/course/my-courses">My courses</a>
+        <a class="dropdown-item bg-dark" href="/course/new" >new course</a>
       <% end %>
       <% if @user.is_admin.to_i == 1  %>
-        <a class="dropdown-item" data-toggle="modal" data-target="#newcategory" href="#w">new Category</a>
-        <a class="dropdown-item" data-toggle="modal" data-target="#newclass" href="#w">new Class</a>
+        <a class="dropdown-item bg-dark" data-toggle="modal" data-target="#newcategory" href="#w">new Category</a>
+        <a class="dropdown-item bg-dark" data-toggle="modal" data-target="#newclass" href="#w" >new Class</a>
       <% end %>
     </div>
 
