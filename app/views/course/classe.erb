@@ -7,10 +7,11 @@
 <section class="col-sm-12 col-xs-12 bg-primary" style="margin-top:-5%; min-height:50px;">
   <div class="container">
     <div class="row">
-      <h1 style="color:rgba(255,255,255,1);"><%= @class.class_name %></h1>
+      <h4 style="color:rgba(255,255,255,1); margin-top:10px;"><%= @class.cr_name %></h4>
     </div>
   </div>
 </section>
+
 
 <div class="container">
   <div class="row">
@@ -18,11 +19,15 @@
       .card{display:flex; margin:5px;}
     </style>
 
-		<div class="" style="width:100%;">
+    <section class="col-sm-12 col-xs-12 " style="min-height:; border-bottom:rgba(0,0,0,0.05) 1px solid;">
+      <br>
+      <b>- Course list</b>
+    </section>
+
+		<div class="col-sm-10 col-xs-12" style="">
     <style media="screen">
       .course_list a, .card p, .card h4, .card ,fa {color:rgba(255,255,255,1);}
     </style>
-      <% if @class %>
         <% @courses = @class.courses.all %>
         <% if @courses %>
           <% @courses.each do |cour| %>
@@ -43,14 +48,14 @@
           </div>
           <% end %>
         <% else %>
-          myaw
+          <p>There is no course in this class</p>
         <% end %>
-      <% else %>
-        medo
-      <% end %>
 
 
 		</div>
+    <div class="col-sm-2 col-xs-12">
+      jdhkjer
+    </div>
 
   </div>
 </div>
