@@ -219,7 +219,7 @@ class CourseController < ApplicationController
   end
 
 
-  get '/course/:id/:title/:di' do
+  get '/show/course/:id/:title/:di' do
     if Helpers.is_logged_in? session
       @user = Helpers.current_user session
       #title = params[:title].gsub("-"," ")
