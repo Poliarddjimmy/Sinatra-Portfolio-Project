@@ -12,7 +12,9 @@
 <section class="col-sm-12 col-xs-12 bg-primary" style="margin-top:-4%; min-height:50px;">
   <div class="container">
     <div class="row">
-      <h4 style="color:rgba(255,255,255,1); margin-top:10px; display:block; width:100%;">User's list</h4>
+      <h4 style="color:rgba(255,255,255,1); margin-top:10px; display:block; width:100%;">
+        <%= @user.last_name %> <span style="color:rgba(255,255,255,1); "><%= @user.first_name %></span>
+      </h4>
 
 
 
@@ -28,9 +30,12 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Option</a>
             <div class="dropdown-menu">
-              <% if @user.is_admin.to_i == 1   %>
-                <a class="dropdown-item" data-toggle="modal" data-target="#myModal1"  href="#">New user</a>
-                <a class="dropdown-item" data-toggle="modal" data-target="#asteacher"  href="#">Change status</a>
+              <% if @user.id == @user1.id %>
+              <a class="dropdown-item" data-toggle="tab" href="#password">Chage password</a>
+              <% end %>
+              <div class="dropdown-divider"></div>
+              <% if @user.id == @user1.id ||  @user1.is_admin == 1 %>
+              <a class="dropdown-item" data-toggle="tab" href="#delete">Delete account</a>
               <% end %>
             </div>
           </li>
@@ -50,7 +55,7 @@
 <div id="myTabContent" class="tab-content w3-light-gre" style="">
 
 <!-- Page Container -->
-<div class="w3-content w3-margin-top" style="max-width:1400px;">
+<div id="perso" class="tab-pane fade show active w3-content w3-margin-top" style="max-width:1400px;">
 
   <!-- The Grid -->
   <div class="w3-row-padding">
@@ -376,6 +381,21 @@
   </div>
 
   <!-- End Page Container -->
+</div>
+<div class="tab-pane fade show" id="portfolio">
+  <br>
+  <h3>Modul complete</h3>
+  <p style="color:rgba(255,255,255,1);">
+    <%
+      @mo = @user.modul_users.all
+
+      if @mo
+        @mo.each do |modu|
+          @m = Modul.find_by_id(modu.modul_id)
+    %>
+      <%= @m.modul_title %>
+    <% end end %>
+  </p>
 </div>
 </div>
 </div>
