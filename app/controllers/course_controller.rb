@@ -14,7 +14,7 @@ class CourseController < ApplicationController
       @user = Helpers.current_user session
       @pam = ClassUser.find_by_user_id(@user.id)
       @class = ClassRoom.all.where(id: @pam.class_id)
-      erb :'/course/class_room'
+      erb :'/course/my_class'
     else
       redirect to '/'
     end

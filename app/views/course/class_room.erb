@@ -28,7 +28,7 @@
     </div>
 		<div class="col-sm-10 col-xs-12" style="width:100%;">
 			<style media="screen">
-				.course_list a, .card p, .card h4{color:rgba(255,255,255,1);}
+				.course_list a, .card p, .card h4, .card ,fa {color:rgba(255,255,255,1);}
 			</style>
           <% if @class.size.to_i == 0 %>
             <a>There is no class publish yet</a>
@@ -37,8 +37,8 @@
             if @class
             @class.each do |classe| %>
           <div class="card col-sm-3 col-xs-12 flex" style="float:left; margin-right:50px;">
-            <h4 style="margin-top:20px;height:100px; color:rgba(255,255,255,1);"><%= classe.cr_name %></h4>
-            <p style="height:70px;"><%= classe.cr_description[0,100] %>...</p>
+            <h4 style="margin-top:20px;height:100px; "><%= classe.cr_name %></h4>
+            <p style="height:70px; color:rgba(255,255,255,0.7);"><%= classe.cr_description[0,100] %>...</p>
 
             <div class="course" style="margin: 24px 0;">
               <style media="screen">
@@ -47,7 +47,7 @@
               <a><i class="fa fa-book" style=""> <%= classe.courses.all.size.to_i %></i></a>
 
               <% if @user.class_users.find_by_class_id(classe.id) %>
-                <a style="color:rgba(255,255,255,1);">
+                <a >
                   <i class="fa fa-users" style=""> <%= ClassUser.all.where(class_id: classe.id).size %> </i>
 
                 </a>
