@@ -142,7 +142,6 @@ nav{-webkit-transition: padding-top .3s,padding-bottom .3s;
     font-weight: 700;
     line-height: 100px;
     margin-bottom: 30px;
-	color:#fff;
 }
 .banner-sub-heading{
 	font-family: 'Libre Baskerville', serif;
@@ -150,7 +149,6 @@ nav{-webkit-transition: padding-top .3s,padding-bottom .3s;
     font-weight: 300;
     line-height: 30px;
     margin-bottom: 50px;
-	color:#fff;
 }
 
 .btn-banner{
@@ -159,7 +157,6 @@ nav{-webkit-transition: padding-top .3s,padding-bottom .3s;
 	font-weight:700;
 	line-height:1.5;
 	text-align:center;
-	color:#fff;
 	text-transform:uppercase;
 }
 .text-intro{
