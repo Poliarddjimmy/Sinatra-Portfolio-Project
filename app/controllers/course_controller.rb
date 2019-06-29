@@ -9,6 +9,17 @@ class CourseController < ApplicationController
     end
   end
 
+  get "/my-class" do
+    if Helpers.is_logged_in? session
+      @user = Helpers.current_user session
+      @pam = ClassUser.find_by_user_id(@user.id)
+      @class = ClassRoom.all.where(id: @pam.class_id)
+      erb :'/course/class_room'
+    else
+      redirect to '/'
+    end
+  end
+
   get "/:title/:id/show" do
     if Helpers.is_logged_in? session
       @user = Helpers.current_user session
