@@ -1,82 +1,105 @@
 <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" />
 
 <% @title = "Show module" %>
-
-<div class="container">
-  <div class="row">
-    <div class="modal" id="myModal">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <form id="" action="/edit/module/<%= @modul.id %>" method="post" >
-            <input id="hidden" type="hidden" name="_method" value="PATCH">
-            <div class="modal-header">
-              <h5 class="modal-title"><%= @modul.modul_title %></h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <div class="form-group">
-                <p> Description
-                  <textarea name="modul_description" class="form-control" rows="" cols="" style="width:100%; padding:5px;"><%= @modul.modul_description %></textarea>
-                </p>
-              </div>
-              <div class="form-group">
-                <p> Content
-                  <textarea name="modul_content" class="form-control" rows="" cols="" style="width:100%; padding:5px;"><%= @modul.modul_content %></textarea>
-                </p>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="submit" class="btn btn-primary">Save changes</button>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-          </form>
+<div class="modal" id="myModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form id="" action="/edit/module/<%= @modul.id %>" method="post" >
+        <input id="hidden" type="hidden" name="_method" value="PATCH">
+        <div class="modal-header">
+          <h5 class="modal-title"><%= @modul.modul_title %></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-      </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <p> Description
+              <textarea name="modul_description" class="form-control" rows="" cols="" style="width:100%; padding:5px;"><%= @modul.modul_description %></textarea>
+            </p>
+          </div>
+          <div class="form-group">
+            <p> Content
+              <textarea name="modul_content" class="form-control" rows="" cols="" style="width:100%; padding:5px;"><%= @modul.modul_content %></textarea>
+            </p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </form>
     </div>
-    <div class="jumbotron col-sm-9 col-xs-12" style="width:100%;">
-      <h2>
-        <span style="color:rgba(220,177,10);"><%= @modul.modul_title %></span>
-        <ul class="navbar-nav ml-auto pull-right" style="font-size:0.3em; float:right; margin:10px;">
+  </div>
+</div>
+<section class="col-sm-12 col-xs-12 bg-primary" style="margin-top:-2%; min-height:50px;">
+  <div class="container">
+    <div class="row">
+      <h4 style="color:rgba(255,255,255,1); margin-top:10px; display:block; width:100%;"><%= @modul.modul_title %></h4>
+
+
+
+      <div class="" style="display:block;">
+        <ul class="nav nav-tabs" >
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#modul">Module content</a>
+          </li>
+          <li class="nav-item">
+          </li>
+          <% if @user.is_admin == 1 %>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-              Others modules
-            </a>
-            <div class="dropdown-menu dropdown-menu-right">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Option</a>
+            <div class="dropdown-menu">
               <% Modul.all.each do |modulo| %>
                 <% if modulo.course_id == @modul.course_id %>
                   <% if modulo.modul_title == @modul.modul_title %>
                     <a class="dropdown-item" >
                   <% else %>
-                    <a class="dropdown-item" href="/course/<%= modulo.course_id %>/<%= modulo.modul_title.to_s.parameterize %>/<%= modulo.modul_number %>">
+                    <a class="dropdown-item" href="/show/course/<%= modulo.course_id %>/<%= modulo.modul_title.to_s.parameterize %>/<%= modulo.modul_number %>">
                   <% end %>
                       <%= modulo.modul_title %>
                     </a>
               <% end end %>
+              <!-- <div class="dropdown-divider"></div>
+              <a class="dropdown-item" data-toggle="tab" href="#AddCourseUser">Activation</a> -->
             </div>
           </li>
+          <% end %>
         </ul>
-      </h2>
-      <% if flash[:success] %>
-        <div id="success" style="color:rgba(255,255,255,1);">
-        <%= flash[:success] %>
-        </div>
-        <br>
-      <% end %>
-      <hr style="margin:1px; border:rgba(255,255,255,1) 1px solid;">
-
-      <p style="margin:1px; color:rgba(255,255,255,1); margin-top:10px;"><%= @modul.modul_description %></p>
-      <br>
-      <div class="">
-        <p style="margin:1px; color:rgba(255,255,255,1);"><%= @modul.modul_content %></p>
       </div>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  <div class="row">
+
+    <div id="myTabContent" class="tab-content col-sm-9 col-xs-12">
+      <br>
+      <% if flash[:success] %>
+      <div class="alert alert-dismissible alert-success" style="display:block; margin-top:20px; ">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <p class="mb-0" style="color:rgba(255,255,255,1);"><%= flash[:success] %></p>
+      </div>
+      <% end %>
 
 
+      <% if flash[:bad] %>
+      <div class="alert alert-dismissible alert-danger" style="display:block; margin-top:20px; ">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <p class="mb-0" style="color:rgba(255,255,255,1);"><%= flash[:bad] %></p>
+        <br>
+      </div>
+      <% end %>
 
-
-
-
+      <div class="tab-pane fade show active" id="modul">
+        <p style="margin:1px; margin-top:10px;"><%= @modul.modul_description %></p>
+        <br>
+        <div class="">
+          <p style="margin:1px;"><%= @modul.modul_content %></p>
+        </div>
+      </div>
+      <h2>
     </div>
     <div class="jumbotron col-sm-3 col-xs-12" style="float:right; border-left:rgba(255,255,255,0.1) 1px solid;">
       <% modul = @user.modul_users.find_by_modul_id(@modul.id) %>
