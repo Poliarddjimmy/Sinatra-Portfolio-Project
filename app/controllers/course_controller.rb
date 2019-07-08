@@ -23,7 +23,12 @@ class CourseController < ApplicationController
     if Helpers.is_logged_in? session
       @user = Helpers.current_user session
       @class = ClassRoom.find(params[:id])
-      erb :'/course/classe'
+      if ClassUser.find_by_class_id(@class.id)
+        erb :'/course/classe'
+      else
+        flash[:success] = 'You don\'t subscribe to this class yet. Please, click on subscribe to this class to get in'
+        redirect back
+      end
     else
       redirect to '/'
     end
