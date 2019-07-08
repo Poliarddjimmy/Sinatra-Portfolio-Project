@@ -93,17 +93,18 @@
        <img src="/images/user.png" alt="John" style="width:50%;" class="thumbnail">
      </div>
      <h4 style="margin-top:20px; height:70px;"><%= user.last_name %> <%= user.first_name %></h4>
-
+     <p class="title" style="height:50px;">
        <% us = Course.all.where(user_id: user.id) %>
        <% if us %>
          <% if @u = us.first %>
-           <p class="title"><%= @u.course_name %></p>
+           <%= @u.course_name %>
            <% else %>
-             <p class="title">No publication yet</p>
+             No publication yet
          <% end %>
          <% else %>
-           <p class="title">No publication yet</p>
+           No publication yet
        <% end %>
+       </p>
 
      <p>LearnHt</p>
      <div style="margin: 24px 0;">

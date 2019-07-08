@@ -178,7 +178,7 @@ class CourseController < ApplicationController
       cour = Helpers.current_user(session).courses.create(params)
       #:class_id params[:class_id], :,:course_name=> params[:course_name], :course_description => params[:course_description]
       if cour.save
-        redirect to "/course/#{cour.id}"
+        redirect to "/show/course/#{cour.id}"
       else
         redirect to "/course/new"
       end
